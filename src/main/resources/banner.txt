@@ -1,0 +1,14 @@
+
+
+ #####                                        #     #                         #     #
+#     # #       ####  #####    ##   #         #     #   ##    ####  #    #    #     #
+#       #      #    # #    #  #  #  #         #     #  #  #  #    # #   #     #     #
+#  #### #      #    # #####  #    # #         ####### #    # #      ####      #     #
+#     # #      #    # #    # ###### #         #     # ###### #      #  #       #   #
+#     # #      #    # #    # #    # #         #     # #    # #    # #   #       # #
+ #####  ######  ####  #####  #    # ######    #     # #    #  ####  #    #       #
+
+Global Hack V Application ${application.formatted-version}
+Clearent/WashU GlobalHack V Team 2015
+Running on Spring Boot ${spring-boot.formatted-version}
+
