@@ -24,3 +24,8 @@ bower install
 
 to see application:
 open browser to http://localhost:8080/
+
+If you have a settings.xml in your local maven repository
+ (C:\Users\<username>\.m2\settings.xml)
+ you will need to rename this file when updating project if your
+ settings.xml points to a different maven repository
