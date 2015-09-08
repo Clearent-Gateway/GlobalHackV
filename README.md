@@ -1,4 +1,5 @@
 Requirements (run as admin privileges):
+- git         - https://git-scm.com/downloads (need command line version)
 - Java 8      - http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 - Maven       - http://maven.apache.org/download.cgi
 - npm(nodejs) - https://nodejs.org/download/
