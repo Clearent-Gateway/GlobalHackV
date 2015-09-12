@@ -19,4 +19,4 @@ src/main/resources/vendor/*
 src/main/resources/public/*
 coverage/*
 *.log
-
+*.iml
