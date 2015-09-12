@@ -15,10 +15,13 @@ import java.util.List;
 
 import org.json.simple.JSONObject;
 
+import com.globalhackv.app.domain.ClearentResponse;
 import com.globalhackv.app.domain.PaymentRequest;
 import com.globalhackv.app.domain.PaymentResponse;
+import com.globalhackv.app.domain.SubmitTransaction;
 import com.globalhackv.app.domain.Transaction;
 import com.globalhackv.app.domain.Violation;
+import com.google.gson.Gson;
 
 //import com.globalhackv.app.domain.String;
 
@@ -67,14 +70,16 @@ public class PaymentService {
 		return response;
 	}
 
-	private static PaymentResponse submitPayments(PaymentRequest request) {
+	public static PaymentResponse submitPayments(PaymentRequest request) {
       final String clearentRequest = "{\"type\":\"SALE\",\"card\":\"" + request.getCardNumber()
       + "\",\"exp-date\":\"" + request.getExpDate() + "\",\"amount\":\"" + request.getAmountToPay()
       + "\"}";
 		PaymentResponse response = new PaymentResponse();
 		String responseString = "";
 		try {
-			responseString = Transaction.requestTransaction(clearentRequest);
+			responseString = SubmitTransaction.requestTransaction(clearentRequest);
+			ClearentResponse clearentResponse = createClearentResponse(responseString);
+//		//	response = createPaymentResponse(clearentResponse);
 			response.setTest(responseString);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -86,8 +91,26 @@ public class PaymentService {
 		return response;
 	}
 	
+	
+
+//	private static PaymentResponse createPaymentResponse(ClearentResponse clearentResponse) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	private static ClearentResponse createClearentResponse(String responseString) {
+		Gson gson = new Gson();
+		
+		ClearentResponse clearentResponse = new ClearentResponse();
+		
+	  clearentResponse=    gson.fromJson(responseString, ClearentResponse.class);
+		System.out.println("transaction id " + clearentResponse.getPayload().getTransaction().getId());
+		return clearentResponse;
+	}
+
 	public Boolean checkSuccess(String response){
 		//parse response and check success
+
 		//JSONObject responseJSON = new JSONObject(response);
 
 		String[] kvPairs = response.split(",");
@@ -135,7 +158,7 @@ public class PaymentService {
 	}
 
 	private static Date getViolationDate(Violation element) {
-		String violationDateStr = element.getStatus_Date();
+		String violationDateStr = element.getStatusDate();
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		Date violationDate = new Date();
 		try {
@@ -155,19 +178,19 @@ public class PaymentService {
 				if(amountLeft.compareTo(BigDecimal.ZERO) == 0){
 					break;
 				}
-				else if(amountLeft.compareTo(v.getFine_Amount()) == 1){ // amount left is greater than fine amount
-					amountLeft = amountLeft.subtract(v.getFine_Amount());
-					v.setFine_Amount(BigDecimal.ZERO);
+				else if(amountLeft.compareTo(v.getFineAmount()) == 1){ // amount left is greater than fine amount
+					amountLeft = amountLeft.subtract(v.getFineAmount());
+					v.setFineAmount(BigDecimal.ZERO);
 					v.setStatus("CLOSED");
 				}
-				else if(amountLeft.compareTo(v.getFine_Amount()) == -1){ // amount left is less than fine amount
-					v.setFine_Amount(v.getFine_Amount().subtract(amountLeft));
+				else if(amountLeft.compareTo(v.getFineAmount()) == -1){ // amount left is less than fine amount
+					v.setFineAmount(v.getFineAmount().subtract(amountLeft));
 					amountLeft = BigDecimal.ZERO;
 					v.setStatus("CONT FOR PAYMENT"); //only partially payed
 				}
 				else{ //fine amount equals amount left
 					amountLeft = BigDecimal.ZERO;
-					v.setFine_Amount(BigDecimal.ZERO);
+					v.setFineAmount(BigDecimal.ZERO);
 					v.setStatus("CLOSED");
 				}
 			}

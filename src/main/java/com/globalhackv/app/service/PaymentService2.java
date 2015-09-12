@@ -13,7 +13,7 @@ import org.json.simple.JSONObject;
 
 import com.globalhackv.app.domain.PaymentRequest;
 import com.globalhackv.app.domain.PaymentResponse;
-import com.globalhackv.app.domain.Transaction;
+import com.globalhackv.app.domain.SubmitTransaction;
 import com.globalhackv.app.domain.Violation;
 
 //import com.globalhackv.app.domain.String;
@@ -68,7 +68,7 @@ public class PaymentService2 {
 		PaymentResponse response = new PaymentResponse();
 		String responseString = "";
 		try {
-			responseString = Transaction.requestTransaction(clearentRequest);
+			responseString = SubmitTransaction.requestTransaction(clearentRequest);
 			response.setTest(responseString);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -112,7 +112,7 @@ public class PaymentService2 {
 	}
 
 	private static Date getViolationDate(Violation element) {
-		String violationDateStr = element.getStatus_Date();
+		String violationDateStr = element.getStatusDate();
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		Date violationDate = new Date();
 		try {
