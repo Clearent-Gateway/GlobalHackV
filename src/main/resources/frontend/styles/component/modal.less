@@ -1,0 +1,135 @@
+.modal-dialog {
+	box-shadow: none;
+	border: 0;
+
+	.modal-content {
+		background-color: #018BC1;
+		color: #73D7FD;
+		font-size: 16px;
+	}
+
+	.modal-title {
+		color: #FFF;
+		font-size: 34px;
+		margin-top: 5px;
+		text-transform: none;
+	}
+
+  	.modal-title-unsized{
+	  color: #FFF;
+	  margin-top: 5px;
+	  text-transform: none;
+	}
+
+	.modal-header {
+		border: 0;
+		padding-bottom: 0;
+		padding-top: 0;
+	}
+
+	.modal-body {
+		padding-top: 0;
+	}
+
+	.btn-close {
+		background-color: #00668E;
+		color: #FFF;
+		letter-spacing: 2px;
+		padding: 3px 6px;
+		position: absolute;
+		top: 10px;
+		right: 10px;
+
+	}
+
+	a {
+		color: #FFF;
+		display: block;
+		margin-top: 20px;
+		font-size: 30px;
+		text-decoration: none;
+
+		.icon {
+			color: #FFF;
+			font-size: 38px;
+		}
+
+		.icon-email {
+			font-size: 30px;
+		}
+
+		.link-text {
+			 position: relative;
+  			top: -8px;
+  			margin-left: 10px;
+
+  			&.email {
+  				top: -4px;
+  			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.modal-dialog {
+
+		.modal-title {
+			margin-top: 10px;
+			margin-bottom: 7px;
+		}
+
+		.modal-content {
+			font-size: 14px;
+		}
+
+		.modal-title {
+			font-size: 20px;
+		}
+
+		a {
+			font-size: 16px;
+			margin-top: 10px;
+
+			.icon {
+				color: #FFF;
+				font-size: 24px;
+			}
+
+			.icon-email {
+				font-size: 16px;
+			}
+
+			.link-text.email {
+				top: -2px;
+			}
+		}
+
+
+	}
+}
+.pointer {
+  cursor: pointer;
+  cursor: hand;
+}
+.center-modal {
+  text-align: center;
+}
+.center-modal .modal-header{
+   margin-top:15px;
+}
+.center-modal:before {
+  display: inline-block;
+  vertical-align: middle;
+  content: " ";
+  height: 100%;
+}
+
+.center-modal .modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  width: 300px;
+  height: 300px;
+  padding:30px;
+}
+

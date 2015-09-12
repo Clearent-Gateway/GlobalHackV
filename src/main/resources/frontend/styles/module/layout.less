@@ -1,0 +1,478 @@
+.header {
+	height: 66px;
+
+	.logo {
+		margin-left: 20px;
+		margin-top: 5px;
+	}
+
+	.main-nav {
+		margin-left: 30px;
+		position: relative;
+		top: 14px;
+
+		li {
+			a {
+			   color: #9B9B9B;
+			  font-family: @interstate-bold;
+			  font-size: 15px;
+			  text-transform: uppercase;
+
+			  &.active{
+				background-color: #EEEEEE;
+			  }
+
+			  &:hover {
+			    color: #4A4A4A;
+			  }
+
+			}
+		}
+
+		.separator {
+           font-family: 'Interstate Bold', sans-serif;
+           position: relative;
+           color: #97C766;
+        }
+	}
+
+	.nav-user {
+		font-family: @interstate-bold;
+		font-size: 15px;
+		margin-right: 20px;
+		position: relative;
+		text-transform: uppercase;
+		top: 14px;
+
+		.icon {
+			font-size: 30px;
+			margin-right: 10px;
+		}
+
+		.button-text,
+		.caret {
+			position: relative;
+			top: -8px;
+		}
+
+		> a {
+			padding: 5px;
+		}
+
+		a {
+			color: #9B9B9B;
+
+			&:hover {
+				background-color: transparent;
+			}
+		}
+	}
+}
+
+.btn-merchant.typeAhead{
+	&::-ms-clear {
+		display: none;
+  	}
+}
+
+.subnav {
+	background-color: #97C766;
+	height: 95px;
+	width: 100%;
+
+
+	.breadcrumbs {
+		color: #FFF;
+		position: relative;
+		top: 27px;
+
+		::-webkit-input-placeholder { color:#fff; }
+        ::-moz-placeholder { color:#fff; } /* firefox 19+ */
+        :-ms-input-placeholder { color:#fff; } /* ie */
+        input:-moz-placeholder { color:#fff; }
+
+		.businessLoading{
+		  /*
+		  position: relative;
+		  margin-left:-30px;
+		  top:50%;
+		  */
+		  top: 18px;
+		  position: absolute;
+		  right: 13px;
+		}
+
+		.separator {
+			font-family: @interstate-bold;
+			font-size: 16px;
+			margin: 0 10px;
+			position: relative;
+			top: -3px;
+		}
+
+		.btn-term {
+			background-color: #7BAA46;
+			border: 0;
+			height: 42px;
+			letter-spacing: 2px;
+			padding-right: 30px;
+			position: relative;
+			text-transform: uppercase;
+			top: -4px;
+			.caret:before {
+				top: -11px;
+			}
+		}
+
+		.btn-merchant-dropdown {
+            background-color: #7BAA46;
+            border: 0;
+            height: 42px;
+            letter-spacing: 2px;
+            padding-right: 30px;
+            position: relative;
+            text-transform: uppercase;
+            top: -4px;
+            .caret:before {
+                top: -11px;
+            }
+        }
+
+		.btn-merchant {
+		    font-size: 36px;
+            font-weight: 300;
+            line-height: 1.42857;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            -moz-user-select: none;
+		    padding: 3px 3px;
+		    border-radius: 4px;
+            background-color: #7BAA46;
+            border: 0;
+            letter-spacing: 2px;
+            position: relative;
+            top: -4px;
+            .caret:before {
+                top: -11px;
+            }
+        }
+
+		.typeAhead {
+		   background-color: #7BAA46;
+           color:#fff;
+           width:450px;
+        }
+
+        .typeAhead:hover {
+           border: 1px solid #fff;
+
+        }
+
+        .typeAhead:focus {
+           background-color: #fff;
+           color:#000;
+        }
+
+		.dropdown-menu {
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			
+			.more { 
+			  background-color: #EEEEEE;
+			  display: block;
+              padding: 3px 20px;
+              clear: both;
+              font-weight: normal;
+              line-height: 1.42857143;
+              color: #333;
+              white-space: nowrap;   
+              text-transform: none;
+              pointer-events:none;
+           }
+		}
+
+		.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+            background-color: #7BAA46;
+            cursor: pointer;
+        }
+
+		.merchant-name {
+			font-size: 24px;
+			font-weight: 300;
+			letter-spacing: 3px;
+		}
+
+		.section-name {
+			a {
+				color: #FFF;
+				letter-spacing: 2px;
+				position: relative;
+				text-transform: uppercase;
+				top: -4px;
+			}
+		}
+	}
+
+
+	.external-buttons {
+		letter-spacing: 2px;
+	    position: relative;
+        top: 33px;
+		.compass-link {
+			background-color: transparent;
+			border: 1px solid #FFF;
+			color: #FFF;
+			height: 32px;
+			width: 152px;
+			margin-bottom:2px;
+			margin-top:2px;
+		}
+
+		.help-link {
+			height: 32px;
+			width: 81px;
+			margin-top:2px;
+		}
+	}
+}
+
+.subnav-mobile {
+    background-color: #97C766;
+    height: 115px;
+    width: 100%;
+
+
+    .breadcrumbs {
+        color: #FFF;
+        ::-webkit-input-placeholder { color:#fff; }
+        ::-moz-placeholder { color:#fff; } /* firefox 19+ */
+        :-ms-input-placeholder { color:#fff; } /* ie */
+        input:-moz-placeholder { color:#fff; }
+
+	  .businessLoading{
+		position: absolute;
+		right: 11px;
+		top: 22px;
+		vertical-align: middle;
+	  }
+
+	  	.btn-group{
+		  width:100%;
+		}
+        .btn-term {
+            background-color: #7BAA46;
+            border: 0;
+            height: 42px;
+            letter-spacing: 2px;
+            padding-right: 30px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            width:100%;
+		    text-align:left;
+		}
+
+        .btn-merchant-dropdown {
+            background-color: #7BAA46;
+            border: 0;
+            height: 42px;
+            letter-spacing: 2px;
+            padding-right: 30px;
+            margin-top: 10px;
+            margin-left:auto;
+            margin-right:auto;
+            text-transform: uppercase;
+		    width:100%;
+		    text-align: left;
+        }
+
+	  	.btn-term,
+		.btn-merchant-dropdown{
+		  .caret{
+			position: absolute;
+			right: 27px;
+			top: 22px;
+		  }
+		}
+
+        .btn-merchant {
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.42857;
+            text-align: left;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            -moz-user-select: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            background-color: #7BAA46;
+            border: 0;
+            height: 42px;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            text-transform: uppercase;
+            width:100%;
+        }
+
+        .typeAhead {
+           background-color: #7BAA46;
+           color:#fff;
+           width:100%;
+        }
+
+        .typeAhead:hover {
+           border: 1px solid #fff;
+
+        }
+
+        .typeAhead:focus {
+           background-color: #fff;
+           color:#000;
+        }
+
+        .dropdown-menu {
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            
+            .more { 
+              background-color: #EEEEEE;
+              display: block;
+              padding: 3px 20px;
+              clear: both;
+              font-weight: normal;
+              line-height: 1.42857143;
+              color: #333;
+              white-space: nowrap;   
+              text-transform: none;
+              pointer-events:none;
+           }
+        }
+
+        .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+            background-color: #7BAA46;
+        }
+
+        .merchant-name {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 3px;
+        }
+
+        .section-name {
+            a {
+                color: #FFF;
+                letter-spacing: 2px;
+                position: relative;
+                text-transform: uppercase;
+                top: -4px;
+            }
+        }
+    }
+}
+
+.nav-mobile {
+	background-color: #97C766;
+	margin-bottom: 0;
+    border: 1px solid #fff;
+	a {
+		color: #FFF;
+
+		.icon {
+		  color: #FFF;
+		  display: block;
+		  position: absolute;
+		  left: 10px;
+		  top: 8px;
+		  font-size: 33px;
+		  -ms-transform: rotate(180deg);
+		  -moz-transform: rotate(180deg);
+		  -webkit-transform: rotate(180deg);
+		  transform: rotate(180deg);
+		}
+
+	}
+
+	nav {
+		a{
+
+			&:hover {
+			  color: #97C766;
+			  font-weight: bold;
+			}
+
+			&.active {
+			  font-size:1.3em;
+			}
+
+		}
+	}
+
+	.navbar-brand {
+		display: block;
+		float: none;
+		padding: 15px 0 15px 48px;
+		text-align: center;
+		width: 100%;
+	}
+
+	.icon-bar {
+		background-color: #FFF;
+	}
+}
+
+@media (max-width: 994px)  {
+    .header {
+	    .main-nav {
+	        margin-left:5px;
+	        li > a {
+	            padding:10px 5px;
+	            font-size: 14px;
+			}
+	    }
+	    .nav-user {
+	        font-size: 13px;
+	        .icon {
+	            margin-right:3px;
+	            font-size: 20px;
+	        }
+	    }
+
+	}
+}
+
+.dropdown-menu.user-menu {
+  right: 0;
+  left: auto;
+}
+
+.template_container{
+  position:relative;
+}
+.template_cover_container2{
+  position:relative;
+}
+.template_cover{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color: #ffffff;
+  z-index:998;
+  -moz-opacity: 0.7;		/* Netscape */
+  -khtml-opacity: 0.7;		/* Safari 1.x */
+  opacity: 0.7;				/* Good browsers */
+}
+.template_cover_message{
+  position:absolute;
+  text-align: center;
+  font-size:1.5em;
+  top:25px;
+  left:25%;
+  width:50%;
+  color:#ffffff;
+  z-index:999;
+  opacity: 1.0;
+}
