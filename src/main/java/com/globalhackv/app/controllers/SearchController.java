@@ -5,13 +5,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 pubilic class SearchController {
     @RequestMapping("/citation")
-    public String search(@RequestParam(value ="first_name", required=true) first_name ,
-                         @RequestParam(value ="last_name", required=true) last_name ,
-                         @RequestParam(value ="date_of_birth", required=false) date_of_birth ,
-                         @RequestParam(value ="drivers_liscense", required=false) drivers_liscense ,
-                         @RequestParam(value ="citation_number", required=false) citation_number ,
-                         @RequestParam(value ="start_date", required=false) start_date ,
-                         @RequestParam(value ="end_date", required=false) end_date ) {
+    public String search(@RequestParam(value ="firstName", required=true) firstName ,
+                         @RequestParam(value ="lastName", required=true) lastName ,
+                         @RequestParam(value ="dateOfBirth", required=false) dateOfBirth ,
+                         @RequestParam(value ="driversLiscense", required=false) driversLiscense ,
+                         @RequestParam(value ="citationNumber", required=false) citationNumber ,
+                         @RequestParam(value ="startDate", required=false) startDate ,
+                         @RequestParam(value ="endDate", required=false) endDate ) {
 
         return "/";
     }
