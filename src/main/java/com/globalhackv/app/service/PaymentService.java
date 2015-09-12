@@ -1,6 +1,7 @@
 package com.globalhackv.app.service;
 
 import java.io.IOException;
+import java.lang.System;
 import java.util.HashMap;
 import java.util.List;
 
@@ -50,6 +51,8 @@ public class PaymentService {
 //		return response;
 //	}
 
+	private final transactionID;
+
 	public static PaymentResponse pay(PaymentRequest request) {
 		PaymentResponse response = new PaymentResponse();
 		response = submitPayments(request);
@@ -75,11 +78,27 @@ public class PaymentService {
 		return response;
 	}
 	
-	public Boolean checkSuccess(){
+	public Boolean checkSuccess(String response){
 		//parse response and check success
+		JSONObject responseJSON = new JSONObject(response);
+
+		if (responseJSON.code == 200){
+			//transaction was a success
+
+			transactionID = responseJSON.links.id;
+
+			return true;
+
+
+		}
+		else{
+			//figure out other error codes or throw exception
+
+			System.out.println("Transaction failed!");
+			return false;
+		}
 		
-		
-		return true;
+
 	}
 	
 	public void sortViolationsByDate(List<Violation> violations){
