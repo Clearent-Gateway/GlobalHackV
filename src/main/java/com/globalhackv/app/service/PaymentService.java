@@ -15,10 +15,13 @@ import java.util.List;
 
 import org.json.simple.JSONObject;
 
+import com.globalhackv.app.domain.ClearentResponse;
 import com.globalhackv.app.domain.PaymentRequest;
 import com.globalhackv.app.domain.PaymentResponse;
+import com.globalhackv.app.domain.SubmitTransaction;
 import com.globalhackv.app.domain.Transaction;
 import com.globalhackv.app.domain.Violation;
+import com.google.gson.Gson;
 
 //import com.globalhackv.app.domain.String;
 
@@ -28,37 +31,6 @@ import com.globalhackv.app.domain.Violation;
 
 public class PaymentService {
 
-//	public PaymentService(String cardNum, String expDate, int amountToBePaid, Violation[] violations, String userID){
-//		pay(cardNum, expDate, amountToBePaid);
-//		update(violations, userID);
-//	}
-//
-//	private void update(Violation[] violations, String userID) {
-//		
-//		
-//	}
-//
-//	public void pay(String cardNum, String expDate, int amountToBePaid){
-//		PaymentRequest request = new PaymentRequest();
-//		request.setAmountToPay(amountToBePaid);
-//		request.setCardNumber(cardNum);
-//		request.setExpDate(expDate);
-//		JSONObject JSONrequest = request.getJSONString();
-//		
-//		String response = sendRequest(JSONrequest);
-//	}
-//	
-//	public static String sendRequest(JSONObject obj){
-//		String response = "";
-//		try {
-//			response = Transaction.requestTransaction(obj.toString());
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return response;
-//	}
-
 	private int transactionID;
 
 	public static PaymentResponse pay(PaymentRequest request) {
@@ -67,80 +39,104 @@ public class PaymentService {
 		return response;
 	}
 
-	private static PaymentResponse submitPayments(PaymentRequest request) {
-      final String clearentRequest = "{\"type\":\"SALE\",\"card\":\"" + request.getCardNumber()
-      + "\",\"exp-date\":\"" + request.getExpDate() + "\",\"amount\":\"" + request.getAmountToPay()
-      + "\"}";
+	public static PaymentResponse submitPayments(PaymentRequest request) {
+		final String clearentRequest = "{\"type\":\"SALE\",\"card\":\"" + request.getCardNumber()
+		+ "\",\"exp-date\":\"" + request.getExpDate() + "\",\"amount\":\"" + request.getAmountToPay()
+		+ "\"}";
 		PaymentResponse response = new PaymentResponse();
 		String responseString = "";
 		try {
-			responseString = Transaction.requestTransaction(clearentRequest);
+			responseString = SubmitTransaction.requestTransaction(clearentRequest);
+			ClearentResponse clearentResponse = createClearentResponse(responseString, request);
+			if(checkSuccess(clearentResponse)){	
+				List<Violation> violations = request.getViolations();
+				violations = sortViolationsByDate(violations);
+				//violations are now sorted by date
+				for (Violation e : violations){
+					System.out.println(" Violation # " + e.getViolationNumber() +" amount: " + e.getFineAmount());
+				}
+				violations = payByOldestViolation(violations, request.getAmountToPay()); //newly updated violations with new amount owed and status
+				updateDatabase(violations);
+				//	response = createPaymentResponse(clearentResponse, clearet);
+			}else{
+				//throw exception
+			}
 			response.setTest(responseString);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		return response;
 	}
-	
-	public Boolean checkSuccess(String response){
+
+
+	//	private static PaymentResponse createPaymentResponse(ClearentResponse clearentResponse) {
+	//		// TODO Auto-generated method stub
+	//		return null;
+	//	}
+
+	private static void updateDatabase(List<Violation> violations) {
+		for (Violation e : violations){
+			System.out.println(" Violation # " + e.getViolationNumber() +" amount: " + e.getFineAmount());
+		}
+	}
+
+	private static ClearentResponse createClearentResponse(String responseString, PaymentRequest request) {
+		Gson gson = new Gson();
+		ClearentResponse clearentResponse = new ClearentResponse();	
+		clearentResponse=    gson.fromJson(responseString, ClearentResponse.class);
+		System.out.println("transaction id " + clearentResponse.getPayload().getTransaction().getId());
+
+		return clearentResponse;
+		//update database with translation code in clearentResponse object
+		//update violations in data base
+	}
+
+	public static Boolean checkSuccess(ClearentResponse response){
 		//parse response and check success
-		//JSONObject responseJSON = new JSONObject(response);
 
-		String[] kvPairs = response.split(",");
-
-		if (kvPairs[0] == "200"){ //should be code - tests for success
-			//transaction was a success
-
-			String[] links = kvPairs[3].split(",");
-			String idNum = links[2];
-
+		if (response.getCode().equals("200")){ //should be code - tests for success
 			return true;
-
-
 		}
 		else{
 			//figure out other error codes or throw exception
-
 			System.out.println("Transaction failed!");
 			return false;
 		}
 	}
-	
+
 	public static List<Violation> sortViolationsByDate(List<Violation> violations){
 		List<Violation> sortedViolations = new ArrayList<Violation>();
 		while (violations.size()>0){
 			int oldestId = getOldest(violations);
-				sortedViolations.add(violations.get(oldestId));
-				violations.remove(oldestId);
+			sortedViolations.add(violations.get(oldestId));
+			violations.remove(oldestId);
 		}
 		return sortedViolations;
 	}
-	
+
 	private static int getOldest (List<Violation> violations) {
 		int oldestViolationIndex = 0;
 		Date oldestViolationDate = new Date ();
-		
+
 		for (int i = 0; i < violations.size(); i++){
 			Date violationDate = getViolationDate(violations.get(i));
 			if(violationDate.before(oldestViolationDate)){
 				oldestViolationIndex = i;
 			}
 		}
-		
+
 		return oldestViolationIndex;
 	}
 
 	private static Date getViolationDate(Violation element) {
-		String violationDateStr = element.getStatus_Date();
+		String violationDateStr = element.getStatusDate();
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		Date violationDate = new Date();
 		try {
 			violationDate = dateFormat.parse(violationDateStr);
-			
+
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -148,34 +144,35 @@ public class PaymentService {
 		return violationDate;
 	}
 
-	public void payByOldestViolation(List<Violation> sortedViolations, String amountToBePaid){
+	public static List<Violation> payByOldestViolation(List<Violation> sortedViolations, String amountToBePaid){ //UPDATE DATABASE STUFF SHOULD GO HERE
 		BigDecimal amountLeft = new BigDecimal(Double.parseDouble(amountToBePaid));
 		if(amountLeft.compareTo(BigDecimal.ZERO) == 1){ //amount left is greater than zero
 			for(Violation v : sortedViolations){
 				if(amountLeft.compareTo(BigDecimal.ZERO) == 0){
 					break;
 				}
-				else if(amountLeft.compareTo(v.getFine_Amount()) == 1){ // amount left is greater than fine amount
-					amountLeft = amountLeft.subtract(v.getFine_Amount());
-					v.setFine_Amount(BigDecimal.ZERO);
+				else if(amountLeft.compareTo(v.getFineAmount()) == 1){ // amount left is greater than fine amount
+					amountLeft = amountLeft.subtract(v.getFineAmount());
+					v.setFineAmount(BigDecimal.ZERO);
 					v.setStatus("CLOSED");
 				}
-				else if(amountLeft.compareTo(v.getFine_Amount()) == -1){ // amount left is less than fine amount
-					v.setFine_Amount(v.getFine_Amount().subtract(amountLeft));
+				else if(amountLeft.compareTo(v.getFineAmount()) == -1){ // amount left is less than fine amount
+					v.setFineAmount(v.getFineAmount().subtract(amountLeft));
 					amountLeft = BigDecimal.ZERO;
 					v.setStatus("CONT FOR PAYMENT"); //only partially payed
 				}
 				else{ //fine amount equals amount left
 					amountLeft = BigDecimal.ZERO;
-					v.setFine_Amount(BigDecimal.ZERO);
+					v.setFineAmount(BigDecimal.ZERO);
 					v.setStatus("CLOSED");
 				}
 			}
 		}
+		return sortedViolations;
 	}
-	
-	
-	
-	
-	
-	}
+
+
+
+
+
+}

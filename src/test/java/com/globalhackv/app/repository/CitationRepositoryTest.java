@@ -38,7 +38,7 @@ public class CitationRepositoryTest {
         example.setFirstName(FIRST_NAME);
         example.setLastName(LAST_NAME);
         example.setDateOfBirth(DATE_OF_BIRTH);
-        example.setDriversLiscense(DRIVERS_LISCENSE);
+        example.setDriversLicense(DRIVERS_LISCENSE);
         example.setAddress(ADDRESS);
         citationRepository.save(example);
 
