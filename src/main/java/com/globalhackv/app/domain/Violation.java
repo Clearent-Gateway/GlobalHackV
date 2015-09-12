@@ -1,15 +1,13 @@
 package com.globalhackv.app.domain;
 
 import java.math.BigDecimal;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
 * Created by jwillard on 9/11/2015.
 */
 @Entity
+@Table(name="Violations")
 public class Violation {
 
     @Id

@@ -25,17 +25,6 @@ import java.util.Properties;
 public class DBConfiguration {
 
 
-    private static final String MSSQL_SHOW_SQL = "false";
-    private static final String HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
-    private static final String HIBERNATE_DIALECT = "hibernate.dialect";
-    private static final String HIBERNATE_SHOW_SQL = "hibernate.show_sql";
-    private static final String ORG_HIBERNATE_DIALECT_HSQL_DIALECT = "org.hibernate.dialect.HSQLDialect";
-    private static final String ORG_HIBERNATE_DIALECT_SQL_SERVER_DIALECT = "org.hibernate.dialect.SQLServerDialect";
-
-    private static final String PROPERTY_NAME_DATABASE_DRIVER = "db.driver";
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "db.password";
-    private static final String PROPERTY_NAME_DATABASE_URL = "db.url";
-    private static final String PROPERTY_NAME_DATABASE_USERNAME = "db.username";
 
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
@@ -51,15 +40,6 @@ public class DBConfiguration {
     }
 
 
-//    @Bean
-//    public AnnotationSessionFactoryBean msSqlSessionFactory() {
-//        AnnotationSessionFactoryBean factoryBean = new AnnotationSessionFactoryBean();
-//        factoryBean.setDataSource(gatewayMsSqlDataSource());
-//        Class<?>[] annotatedClasses = new Class<?>[] { Violation.class, Citation.class };
-//        factoryBean.setAnnotatedClasses(annotatedClasses);
-//        factoryBean.setHibernateProperties(getMsSqlHibernateProperties());
-//        return factoryBean;
-//    }
 
     private Properties hibProperties() {
         Properties properties = new Properties();
