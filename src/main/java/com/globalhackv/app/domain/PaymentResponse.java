@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PaymentResponse {
 
-    private String test;
+    private String code;
     private List<Violation> violations;
 
 	public List<Violation> getViolations() {
@@ -16,12 +16,12 @@ public class PaymentResponse {
 		this.violations = violations;
 	}
 
-	public String getTest() {
-		return test;
+	public String getCode() {
+		return code;
 	}
 
-	public void setTest(String test) {
-		this.test = test;
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
 }

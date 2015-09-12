@@ -21,6 +21,7 @@ import com.globalhackv.app.domain.PaymentResponse;
 import com.globalhackv.app.domain.SubmitTransaction;
 import com.globalhackv.app.domain.Transaction;
 import com.globalhackv.app.domain.Violation;
+import com.globalhackv.app.DBConfiguration;
 import com.google.gson.Gson;
 
 //import com.globalhackv.app.domain.String;
@@ -57,11 +58,11 @@ public class PaymentService {
 				}
 				violations = payByOldestViolation(violations, request.getAmountToPay()); //newly updated violations with new amount owed and status
 				updateDatabase(violations);
-				//	response = createPaymentResponse(clearentResponse, clearet);
+				response = createPaymentResponse(clearentResponse, violations);
 			}else{
 				//throw exception
 			}
-			response.setTest(responseString);
+	//		response.setTest(responseString);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -71,10 +72,12 @@ public class PaymentService {
 	}
 
 
-	//	private static PaymentResponse createPaymentResponse(ClearentResponse clearentResponse) {
-	//		// TODO Auto-generated method stub
-	//		return null;
-	//	}
+		private static PaymentResponse createPaymentResponse(ClearentResponse clearentResponse, List<Violation> violations) {
+			PaymentResponse response = new PaymentResponse();
+			response.setCode(clearentResponse.getCode());
+			response.setViolations(violations);
+			return response;
+		}
 
 	private static void updateDatabase(List<Violation> violations) {
 		for (Violation e : violations){
