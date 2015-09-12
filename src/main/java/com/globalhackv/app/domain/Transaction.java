@@ -30,15 +30,15 @@ public class Transaction {
 // 
 //    }
  
-    public static String requestSale() throws Exception {
-        final String card = "4111111111111111";
-        final String exp_date = "1219";
-        final String amount = "25.00";
-        final String requestBody = "{\"type\":\"SALE\",\"card\":\"" + card
-                + "\",\"exp-date\":\"" + exp_date + "\",\"amount\":\"" + amount
-                + "\"}";
-        return requestTransaction(requestBody);
-    }
+//    public static String requestSale() throws Exception {
+//        final String card = "4111111111111111";
+//        final String exp_date = "1219";
+//        final String amount = "25.00";
+//        final String requestBody = "{\"type\":\"SALE\",\"card\":\"" + card
+//                + "\",\"exp-date\":\"" + exp_date + "\",\"amount\":\"" + amount
+//                + "\"}";
+//        return requestTransaction(requestBody);
+//    }
  
     public static String requestTransaction(String requestBody)
             throws IOException {
