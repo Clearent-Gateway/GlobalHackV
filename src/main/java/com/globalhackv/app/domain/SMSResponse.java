@@ -1,7 +1,7 @@
 package com.globalhackv.app.domain;
 
 public class SMSResponse {
-
+ 
     private String citationNumber;
     private String message;
     
