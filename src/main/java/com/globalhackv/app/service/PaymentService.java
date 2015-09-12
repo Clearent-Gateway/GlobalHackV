@@ -1,12 +1,19 @@
 package com.globalhackv.app.service;
 
 import java.io.IOException;
+<<<<<<< HEAD
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+=======
+import java.math.BigDecimal;
+import java.lang.System;
+import java.math.BigDecimal;
+>>>>>>> b3ed4d1795cdc3a7b29abf16b535a34cc1ce61f5
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.json.simple.JSONObject;
@@ -55,6 +62,8 @@ public class PaymentService {
 //		return response;
 //	}
 
+	private final transactionID;
+
 	public static PaymentResponse pay(PaymentRequest request) {
 		PaymentResponse response = new PaymentResponse();
 		response = submitPayments(request);
@@ -80,8 +89,25 @@ public class PaymentService {
 		return response;
 	}
 	
-	public Boolean checkSuccess(){
+	public Boolean checkSuccess(String response){
 		//parse response and check success
+		JSONObject responseJSON = new JSONObject(response);
+
+		if (responseJSON.code == 200){
+			//transaction was a success
+
+			transactionID = responseJSON.links.id;
+
+			return true;
+
+
+		}
+		else{
+			//figure out other error codes or throw exception
+
+			System.out.println("Transaction failed!");
+			return false;
+		}
 		
 		
 		return true;
@@ -126,7 +152,29 @@ public class PaymentService {
 	}
 
 	public void payByOldestViolation(List<Violation> sortedViolations, String amountToBePaid){
-		
+		BigDecimal amountLeft = new BigDecimal(Double.parseDouble(amountToBePaid));
+		if(amountLeft.compareTo(BigDecimal.ZERO) == 1){ //amount left is greater than zero
+			for(Violation v : sortedViolations){
+				if(amountLeft.compareTo(BigDecimal.ZERO) == 0){
+					break;
+				}
+				else if(amountLeft.compareTo(v.getFine_Amount()) == 1){ // amount left is greater than fine amount
+					amountLeft = amountLeft.subtract(v.getFine_Amount());
+					v.setFine_Amount(BigDecimal.ZERO);
+					v.setStatus("CLOSED");
+				}
+				else if(amountLeft.compareTo(v.getFine_Amount()) == -1){ // amount left is less than fine amount
+					v.setFine_Amount(v.getFine_Amount().subtract(amountLeft));
+					amountLeft = BigDecimal.ZERO;
+					v.setStatus("CONT FOR PAYMENT"); //only partially payed
+				}
+				else{ //fine amount equals amount left
+					amountLeft = BigDecimal.ZERO;
+					v.setFine_Amount(BigDecimal.ZERO);
+					v.setStatus("CLOSED");
+				}
+			}
+		}
 	}
 	
 	
