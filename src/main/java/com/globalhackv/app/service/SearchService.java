@@ -4,13 +4,11 @@ import com.globalhackv.app.domain.Citation;
 import com.globalhackv.app.repository.CitationRepository;
 import com.globalhackv.app.repository.CitationSpec;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by jwillard on 9/11/2015.
- */
+@Service
 public class SearchService {
 
     @Autowired
