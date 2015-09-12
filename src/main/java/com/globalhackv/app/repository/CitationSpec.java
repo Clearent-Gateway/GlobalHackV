@@ -37,7 +37,7 @@ public class CitationSpec implements Specification<Citation> {
         }
 
         if (StringUtils.isNotBlank(example.getDriversLicense())){
-            predicates.add(cb.like(cb.lower(root.get(Citation_.driversLiscense)), example.getDriversLicense().toLowerCase() + "%"));
+            predicates.add(cb.like(cb.lower(root.get(Citation_.driversLicense)), example.getDriversLicense().toLowerCase() + "%"));
         }
 
         if (StringUtils.isNotBlank(example.getAddress())){

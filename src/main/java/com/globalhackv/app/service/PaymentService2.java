@@ -22,7 +22,7 @@ import com.globalhackv.app.domain.Violation;
  * Created by jwillard on 9/11/2015.
  */
 
-public class PaymentService {
+public class PaymentService2 {
 
 //	public PaymentService(String cardNum, String expDate, int amountToBePaid, Violation[] violations, String userID){
 //		pay(cardNum, expDate, amountToBePaid);
