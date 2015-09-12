@@ -88,16 +88,16 @@ public class PaymentService {
 	
 	public Boolean checkSuccess(String response){
 		//parse response and check success
-		JSONObject responseJSON = new JSONObject();
-		response.concat(response);
-		
-		
-		
-		if (responseJSON.get("code") == "200"){
+
+		//JSONObject responseJSON = new JSONObject(response);
+
+		String[] kvPairs = response.split(",");
+
+		if (kvPairs[0] == "200"){ //should be code - tests for success
 			//transaction was a success
 
-			transactionLink = responseJSON.get("links");
-			
+			String[] links = kvPairs[3].split(",");
+			String idNum = links[2];
 
 			return true;
 
@@ -109,9 +109,6 @@ public class PaymentService {
 			System.out.println("Transaction failed!");
 			return false;
 		}
-		
-		
-		return true;
 	}
 	
 	public static List<Violation> sortViolationsByDate(List<Violation> violations){
