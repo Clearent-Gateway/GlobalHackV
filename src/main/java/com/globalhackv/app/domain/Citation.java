@@ -16,7 +16,6 @@ public class Citation {
     private String courtDate;
 
     public Citation() {
-        
     }
     public String getFirstName() {
         return firstName;

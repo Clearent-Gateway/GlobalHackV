@@ -1,13 +1,21 @@
 package com.globalhackv.app.domain;
 
 import java.math.BigDecimal;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 /**
  * Created by jwillard on 9/11/2015.
  */
+@Entity
 public class Violation {
 
 private Long citation_Numbers;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String violation_Number;
     private String violation_Description;
     private boolean warrant_Status;

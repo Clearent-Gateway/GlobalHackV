@@ -14,5 +14,4 @@ public class SearchService {
         return listCitation;
     }
 
-
 }
