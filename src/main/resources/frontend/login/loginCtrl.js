@@ -17,7 +17,8 @@ angular
 
         // Logs user in with credentials
         function login(){
-            LoginService.login(vm.credentials);
+            //LoginService.login(vm.credentials);
+            $location.path('search');
         }
 
         function authenticated(){
