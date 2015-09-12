@@ -2,6 +2,7 @@ package com.globalhackv.app.service;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 import org.json.simple.JSONObject;
 
@@ -52,8 +53,6 @@ public class PaymentService {
 	public static PaymentResponse pay(PaymentRequest request) {
 		PaymentResponse response = new PaymentResponse();
 		response = submitPayments(request);
-//		response.setTest("accessing service yay " + request.getAmountToPay());
-//		response.setViolations(request.getViolations());
 		return response;
 	}
 
@@ -75,4 +74,27 @@ public class PaymentService {
 		} 
 		return response;
 	}
+	
+	public Boolean checkSuccess(){
+		//parse response and check success
+		
+		
+		return true;
+	}
+	
+	public void sortViolationsByDate(List<Violation> violations){
+		
+		
+	}
+	
+	public void payByOldestViolation(List<Violation> sortedViolations, String amountToBePaid){
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	}
