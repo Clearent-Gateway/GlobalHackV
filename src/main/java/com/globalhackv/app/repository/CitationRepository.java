@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@RepositoryRestResource(collectionResourceRel = "citations", path = "citations")
+
 public interface CitationRepository extends JpaRepository<Citation,Long>, JpaSpecificationExecutor {
 
     List<Citation> findByCitationNumber(long citationNumber);
