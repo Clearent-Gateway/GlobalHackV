@@ -6,7 +6,7 @@ public class SMSRequest {
     private String searchString;
     
     public SMSRequest() {
-    	
+    	 
     }
 
 	public String getPhoneNumber() {

@@ -7,7 +7,7 @@ public class SMSResponse {
     
     public SMSResponse() {
     	
-    }
+    } 
 
 	public String getCitationNumber() {
 		return citationNumber;
