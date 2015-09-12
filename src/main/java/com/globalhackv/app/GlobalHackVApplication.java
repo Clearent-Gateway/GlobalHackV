@@ -9,4 +9,7 @@ public class GlobalHackVApplication {
     public static void main(String[] args) {
         SpringApplication.run(GlobalHackVApplication.class, args);
     }
+    
+    
+   
 }

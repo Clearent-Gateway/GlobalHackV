@@ -15,26 +15,30 @@ import com.globalhackv.app.service.SMSRequestService;
 @Controller
 public class SMSController {
 
-	@Autowired
-	SMSRequestService smsRequestService;
+	//@Autowired
+	//SMSRequestService smsRequestService;
 
 	@RequestMapping("/sms")
 	public String search(HttpServletRequest request) {
 
+		System.out.println("woohoo !");
+		
 		// TODO Get phone number from request
 		String phoneNumber = getPhoneNumber(request);
 		// TODO Get list of search strings from the request.
 		List<String> searchStrings = getSearchStrings(request);
 
 		// TODO Call new service
-		SMSResponse smsResponse = smsRequestService.searchForCitations(phoneNumber, searchStrings);
+		//SMSResponse smsResponse = smsRequestService.searchForCitations(phoneNumber, searchStrings);
 
 		// TODO Does the response have to match a Twilio format ?
-		if (smsResponse.getCitationNumber() != null) {
-			return "Parking ticket number " + smsResponse.getCitationNumber();
-		} else {
-			return smsResponse.getMessage();
-		}
+//		if (smsResponse.getCitationNumber() != null) {
+//			return "Parking ticket number " + smsResponse.getCitationNumber();
+//		} else {
+//			return smsResponse.getMessage();
+//		}
+		
+		return null;
 
 	}
 

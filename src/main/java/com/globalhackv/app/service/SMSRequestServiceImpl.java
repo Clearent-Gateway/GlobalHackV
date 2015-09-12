@@ -11,8 +11,8 @@ import com.globalhackv.app.repository.SMSRequestRepository;
 @Service(value="smsRequestService")
 public class SMSRequestServiceImpl implements SMSRequestService {
 
-    @Autowired
-    SMSRequestRepository smsRequestRepository;
+    //@Autowired
+   // SMSRequestRepository smsRequestRepository;
 
 	@Override
 	public SMSResponse searchForCitations(String phoneNumber,
