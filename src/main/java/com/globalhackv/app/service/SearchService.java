@@ -5,6 +5,7 @@ import com.globalhackv.app.domain.Violation;
 import com.globalhackv.app.repository.CitationRepository;
 import com.globalhackv.app.repository.CitationSpec;
 import com.globalhackv.app.repository.ViolationRepository;
+import com.globalhackv.app.repository.ViolationSpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,8 @@ public class SearchService {
     }
 
     public List<Violation> findViolation(long citationNumber) {
-//        return violationRepository.findAll();
+        ViolationSpec violationSpec = new ViolationSpec(citationNumber);
+        return violationRepository.findAll(violationSpec);
     }
 
 }

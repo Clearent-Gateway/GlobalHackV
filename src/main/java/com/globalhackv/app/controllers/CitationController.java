@@ -27,7 +27,7 @@ public class CitationController {
                          @RequestParam(value ="lastName", required=true) String lastName ,
                          @RequestParam(value ="dateOfBirth", required=false) String dateOfBirth ,
                          @RequestParam(value ="driversLicesnse", required=false) String driversLicesnse ,
-                         @RequestParam(value ="citationNumber", required=false) String citationNumber ) {
+                         @RequestParam(value ="citationNumber", required=false) long citationNumber ) {
 
 
          List<Citation> citations = new ArrayList<Citation>();

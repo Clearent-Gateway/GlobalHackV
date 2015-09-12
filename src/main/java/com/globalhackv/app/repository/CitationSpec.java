@@ -2,6 +2,7 @@ package com.globalhackv.app.repository;
 
 import com.globalhackv.app.domain.Citation;
 import com.globalhackv.app.domain.Citation_;
+import com.globalhackv.app.domain.Violation_;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -43,8 +44,8 @@ public class CitationSpec implements Specification<Citation> {
         if (StringUtils.isNotBlank(example.getAddress())){
             predicates.add(cb.like(cb.lower(root.get(Citation_.address)), example.getAddress().toLowerCase() + "%"));
         }
-        if(example.getCitationNumber()!=null){
-            predicates.add(cb.like(cb.lower(root.get(Citation_.citationNumber)), example.getCitationNumber().toLowerCase() + "%"));
+        if(example.getCitationNumber()!=0){
+            predicates.add(cb.equal(root.get(Citation_.citationNumber), example.getCitationNumber()));
         }
 
         return andTogether(predicates, cb);

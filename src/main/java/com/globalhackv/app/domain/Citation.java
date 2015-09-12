@@ -88,11 +88,11 @@ public class Citation {
         this.state = state;
     }
 
-    public String getCitationNumber() {
+    public long getCitationNumber() {
         return citationNumber;
     }
 
-    public void setCitationNumber(String citationNumber) {
+    public void setCitationNumber(long citationNumber) {
         this.citationNumber = citationNumber;
     }
 
