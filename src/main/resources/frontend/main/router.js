@@ -11,7 +11,7 @@ angular.module('court')
             })
             .when('/search', {
                 templateUrl: '/templates/citation/citations.html',
-                controller: 'CitationCtrl as citationCtrl'
+                controller: 'CitationListCtrl as citationListCtrl'
             })
             /* Place new routes above these */
             .when('/', {
