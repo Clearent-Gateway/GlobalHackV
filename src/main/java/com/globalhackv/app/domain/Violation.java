@@ -10,7 +10,7 @@ import javax.persistence.Id;
  * Created by jwillard on 9/11/2015.
  */
 @Entity
-public class Violation {
+public class Violation { 
 
 private Long citation_Numbers;
     @Id
