@@ -18,10 +18,11 @@ public class Citation {
     private String city;
     private String state;
     private long citationNumber;
-    private String municapality;
+    private String municipality;
     private String citationDate;
     private String courtAddress;
     private String courtDate;
+
 
     public Citation() {
         
@@ -91,12 +92,12 @@ public class Citation {
         this.citationNumber = citationNumber;
     }
 
-    public String getMunicapality() {
-        return municapality;
+    public String getMunicipality() {
+        return municipality;
     }
 
-    public void setMunicapality(String municapality) {
-        this.municapality = municapality;
+    public void setMunicipality(String municipality) {
+        this.municipality = municipality;
     }
 
     public String getCitationDate() {

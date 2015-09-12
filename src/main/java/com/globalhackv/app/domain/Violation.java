@@ -7,14 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Created by jwillard on 9/11/2015.
- */
+* Created by jwillard on 9/11/2015.
+*/
 @Entity
 public class Violation { 
  
 private Long citation_Numbers;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   @Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String violation_Number;
     private String violation_Description;
@@ -100,4 +100,5 @@ private Long citation_Numbers;
     public void setCourt_Costs(BigDecimal court_Costs) {
         this.court_Costs = court_Costs;
     }
+
 }
