@@ -4,6 +4,7 @@ angular
         function ($scope, $modal, $location) {
 
             var vm = this;
+            vm.goToPayment = goToPayment;
             vm.citations = [
                 {
                     "fName": "NIck",
@@ -76,5 +77,8 @@ angular
                 }
             ];
 
+            function goToPayment(){
+
+            }
 
         }]);
