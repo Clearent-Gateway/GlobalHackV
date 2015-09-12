@@ -3,6 +3,7 @@ package com.globalhackv.app.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity(name="Citations")
 public class Citation {
@@ -24,9 +25,12 @@ public class Citation {
     private String courtDate;
 
 
+
     public Citation() {
         
     }
+
+
 
     public String getFirstName() {
         return firstName;
@@ -84,11 +88,11 @@ public class Citation {
         this.state = state;
     }
 
-    public long getCitationNumber() {
+    public String getCitationNumber() {
         return citationNumber;
     }
 
-    public void setCitationNumber(long citationNumber) {
+    public void setCitationNumber(String citationNumber) {
         this.citationNumber = citationNumber;
     }
 

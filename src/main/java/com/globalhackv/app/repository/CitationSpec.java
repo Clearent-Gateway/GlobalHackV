@@ -37,11 +37,14 @@ public class CitationSpec implements Specification<Citation> {
         }
 
         if (StringUtils.isNotBlank(example.getDriversLicense())){
-            predicates.add(cb.like(cb.lower(root.get(Citation_.driversLiscense)), example.getDriversLicense().toLowerCase() + "%"));
+            predicates.add(cb.like(cb.lower(root.get(Citation_.driversLicense)), example.getDriversLicense().toLowerCase() + "%"));
         }
 
         if (StringUtils.isNotBlank(example.getAddress())){
             predicates.add(cb.like(cb.lower(root.get(Citation_.address)), example.getAddress().toLowerCase() + "%"));
+        }
+        if(example.getCitationNumber()!=null){
+            predicates.add(cb.like(cb.lower(root.get(Citation_.citationNumber)), example.getCitationNumber().toLowerCase() + "%"));
         }
 
         return andTogether(predicates, cb);
