@@ -6,7 +6,7 @@ public class SMSResponse {
     private String message;
     
     public SMSResponse() {
-    	
+    	 
     } 
 
 	public String getCitationNumber() {

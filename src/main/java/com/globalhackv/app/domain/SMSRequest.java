@@ -1,7 +1,7 @@
 package com.globalhackv.app.domain;
 
 public class SMSRequest {
- 
+  
     private String phoneNumber;
     private String searchString;
     
