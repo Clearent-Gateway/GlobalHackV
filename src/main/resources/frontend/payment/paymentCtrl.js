@@ -9,16 +9,23 @@ angular.module('court')
         vm.modalOpen = false;
         vm.removeAlpha = removeAlpha;
         vm.citations = CitationService.getCitations();
-        vm.getPaymentTotal = getPaymentTotal();
+        vm.paymentTotal = 0;
         vm.cancel = cancel;
 
         function getPaymentTotal(){
             var amount=0;
-            for(var i=9;i<vm.citations.length;i++){
+            for(var i=0;i<vm.citations.length;i++){
                 amount+= parseFloat(vm.citations[i].amount);
+            console.log("(vm.citations[i].amount=" + vm.citations[i].amount);
+            console.log("amount=" + amount);
             }
-            return amount;
+            vm.paymentTotal = amount;
+            if(!amount>0){
+                $location.path('search');
+            }
         }
+
+        getPaymentTotal();
 
         function cancel(){
             $location.path('search');

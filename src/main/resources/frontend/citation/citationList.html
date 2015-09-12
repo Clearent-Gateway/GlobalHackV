@@ -85,7 +85,7 @@
                 <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Driver's License">{{row.driversLicense}}</td>
                 <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Citation #">{{row.citationNumber}}</td>
                 <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Citation Date">{{row.citationDate}}</td>
-                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Fine" class="currency">{{row.amount}}</td>
+                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Fine" class="currency">$ {{row.amount}}</td>
                 <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Court Date">{{row.courtDate}}</td>
                 <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Court Address">{{row.courtAddress}}<br>{{row.municipality}}</td>
             </tr>
