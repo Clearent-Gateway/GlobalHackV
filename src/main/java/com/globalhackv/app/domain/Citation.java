@@ -1,7 +1,15 @@
 package com.globalhackv.app.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Citation {
 
+    @Id
+    @GeneratedValue
+    private long id;
     private String firstName;
     private String lastName;
     private String dateOfBirth;
@@ -18,6 +26,7 @@ public class Citation {
     public Citation() {
         
     }
+
     public String getFirstName() {
         return firstName;
     }
@@ -113,4 +122,13 @@ public class Citation {
     public void setCourtDate(String courtDate) {
         this.courtDate = courtDate;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
 }
