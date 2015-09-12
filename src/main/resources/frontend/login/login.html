@@ -1,27 +1,28 @@
 <div class="login-container">
-    <img src="/images/clearent-logo.png" width="350px" alt="Clearent - Intelligent Processing">
     <div class="login">
-        <div class="login-header">Virtual Terminal</div>
+        <div class="login-header">My Day in Court</div>
         <div class="login-content">
-            <div class="alert alert-danger" ng-show="authCtrl.hasLoginError()" id="loginerror">
+            <div class="alert alert-danger" ng-show="loginCtrl.hasLoginError()" id="loginerror">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 There was a problem logging in. Please try again. <br>
-            {{authCtrl.getAuth().loginMsg}}
             </div>
             <fieldset ng-disabled="isSaving">
-            <form role="form" name="loginForm" ng-submit="loginCtrl.login()" autocomplete="off">
-                <div class="form-group">
-                    <i class="icon icon-useraccount"></i>
-                    <input autocapitalize="off" autocorrect="off" autocomplete="off" placeholder="Username" type="text" class="form-control" id="username" name="username" ng-model="loginCtrl.credentials.username"/>
-                </div>
-                <div class="form-group">
-                    <i class="icon icon-key"></i>
-                    <input autocapitalize="off" autocorrect="off" autocomplete="off" placeholder="Password" type="password" class="form-control" id="password" name="password" ng-model="loginCtrl.credentials.password"/>
-                    <label class="glyphicon glyphicon-eye-close" aria-hidden="true" ng-peek="password"></label>
-                </div>
-                <div class="forgot-password" ng-click="open()">forgot your password?</div>
-                <button type="submit" class="btn btn-primary" id="submitButton">Sign In</button>
-            </form>
+                <form role="form" name="loginForm" ng-submit="loginCtrl.login()" autocomplete="off">
+                    <div class="form-group">
+                        <i class="icon icon-useraccount"></i>
+                        <input autocapitalize="off" autocorrect="off" autocomplete="off" placeholder="Username" type="text" class="form-control" id="username" name="username" ng-model="loginCtrl.credentials.username"/>
+                    </div>
+                    <div class="form-group">
+                        <i class="icon icon-key"></i>
+                        <input autocapitalize="off" autocorrect="off" autocomplete="off" placeholder="Password" type="password" class="form-control" id="password" name="password" ng-model="loginCtrl.credentials.password"/>
+                        <label class="glyphicon glyphicon-eye-close" aria-hidden="true" ng-peek="password"></label>
+                    </div>
+                    <div class="forgot-password"></div>
+                    <!--
+                    <div class="forgot-password" ng-click="open()">forgot your password?</div>
+                    -->
+                    <button type="submit" class="btn btn-primary" id="submitButton">Sign In</button>
+                </form>
             </fieldset>
         </div>
     </div>

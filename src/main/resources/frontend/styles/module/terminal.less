@@ -1,0 +1,418 @@
+.enter-payment-title {
+	margin-left: -15px;
+}
+
+.section-label {
+	display: block;
+	text-align: left;
+}
+
+.amount-form {
+	width: 550px;
+}
+
+.stickyBottom {
+    position: fixed;
+    bottom: 5px;
+}
+
+.card-form {
+	width: 550px;
+
+	.col-sm-6,
+	.col-sm-12 {
+		padding: 0;
+	}
+
+	.form-card-magfalse:not(:focus) {
+		border-radius: 5px 5px 0 0;
+	}
+
+	.btn-clear-mag {
+	  background:none;
+	  border: 1px solid #ccc;
+	  color: #333;
+	  border-radius: 0 5px 0 0;
+	  margin-bottom: 0;
+	  height: 34px;
+	  width:51px;
+	}
+
+	.btn-clear-mag:hover {
+	   background:#EEEEEE;
+	}
+    .btn-clear-mag .glyphicon{
+	  padding:0 3px;
+	}
+
+	.form-expiration:not(:focus) {
+		border-bottom: 0;
+		border-top: 0;
+		border-radius: 0;
+	}
+
+	.form-cvc:not(:focus) {
+		border-bottom: 0;
+		border-left: 0;
+		border-top: 0;
+		border-radius: 0;
+	}
+
+	.form-zip:not(:focus) {
+		border-radius: 0 0 5px 5px;
+	}
+
+  	.form-zip-auth:not(:focus) {
+	    border-bottom: 0;
+	    border-radius: 0;
+  	}
+
+	.form-auth:not(:focus) {
+	    border-radius: 0 0 5px 5px;
+	}
+}
+
+.address-form{
+	width: 550px;
+
+  .col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,
+  .col-sm-7,.col-sm-8,.col-sm-9
+  .col-sm-10,.col-sm-11,.col-sm-12 {
+		padding: 0;
+	}
+
+	.form-first-name:not(:focus) {
+		border-radius: 5px 0 0 0;
+  	}
+
+   .form-last-name:not(:focus) {
+		border-radius: 0 5px 0 0;
+	    border-left: 0;
+	}
+
+	.form-street:not(:focus) {
+		border-bottom: 0;
+		border-radius: 0;
+   	}
+
+	.form-city:not(:focus) {
+		border-radius: 0;
+	    border-bottom:0;
+	}
+
+	.form-state:not(:focus) {
+	  	border-radius: 0 0 0 5px;
+	    border-right:0;
+	}
+
+    .form-state {
+		color: #888;
+	}
+    .form-state option {
+		color: #000000;
+	}
+	.form-zip:not(:focus) {
+		border-radius: 0 0 5px 0;
+	}
+
+}
+
+.order-form{
+  width: 550px;
+
+  .col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,
+  .col-sm-7,.col-sm-8,.col-sm-9
+  .col-sm-10,.col-sm-11,.col-sm-12 {
+	padding: 0;
+  }
+
+  .form-invoice:not(:focus){
+	border-radius: 5px 5px 0 0;
+  }
+
+  .form-purchaseOrder:not(:focus){
+	border-radius: 0;
+	border-top: 0;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+  }
+
+  .form-customerId:not(:focus){
+	border-radius: 0;
+	border-top: 0;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+  }
+
+  .form-description:not(:focus){
+	border-radius: 0;
+	border-top: 0;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+  }
+
+  .form-comments:not(:focus){
+	border-radius: 0 0 5px 5px;
+	border-top: 0;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+  }
+
+}
+
+.collapse-control {
+	color: #909090;
+	cursor: pointer;
+	margin-bottom: 12px;
+}
+
+.btn-transaction {
+	font-size: 18px;
+	margin-top: 20px;
+	padding: 10px 38px;
+}
+
+.transaction-form {
+	border: 1px solid #DDD;
+	border-top: 0;
+	padding: 42px;
+}
+
+.additional-info {
+	clear: both;
+	padding-top: 36px;
+}
+
+@media (max-width: 768px)  {
+	.amount-form {
+		width: 100%;
+		margin: 10px auto;
+
+		.form-control {
+			height: 50px;
+		}
+	}
+
+	.card-form {
+		margin: 10px auto;
+		width: 100%;
+
+		.form-control {
+			height: 50px;
+		}
+
+		.form-card-magfalse:not(:focus) {
+		  border-radius: 5px 5px 0 0;
+		  border: 1px solid #ccc;
+		}
+	    .form-card-magtrue:not(:focus) {
+		  border-radius: 5px 0px 0 0;
+		  border: 1px solid #ccc;
+	    }
+
+	    .btn-clear-mag {
+			background:none;
+			border: 1px solid #ccc;
+			color: #333;
+			border-radius: 0 5px 0 0;
+			margin-bottom: 0;
+		    height: 50px;
+	    }
+		.form-expiration:not(:focus) {
+		  border-radius: 0;
+		  border-top: 0;
+		  border-right: 1px solid #ccc;
+		  border-bottom: 1px solid #ccc;
+		  border-left: 1px solid #ccc;
+		}
+
+		.form-cvc:not(:focus) {
+		  border-radius: 0;
+		  border-top: 0;
+		  border-right: 1px solid #ccc;
+		  border-bottom: 1px solid #ccc;
+		  border-left: 1px solid #ccc;
+		}
+
+		.form-zip:not(:focus) {
+		  border-radius: 0 0 5px 5px;
+		  border-top: 0;
+		  border-right: 1px solid #ccc;
+		  border-bottom: 1px solid #ccc;
+		  border-left: 1px solid #ccc;
+		}
+
+		.form-zip-auth:not(:focus) {
+		  border-radius: 0;
+		  border-top: 0;
+		  border-right: 1px solid #ccc;
+		  border-bottom: 1px solid #ccc;
+		  border-left: 1px solid #ccc;
+		}
+
+		.form-auth:not(:focus) {
+		  border-radius: 0 0 5px 5px;
+		  border-top: 0;
+		  border-right: 1px solid #ccc;
+		  border-bottom: 1px solid #ccc;
+		  border-left: 1px solid #ccc;
+		}
+
+	}
+
+  	.address-form {
+		margin: 10px auto;
+	  	width: 100%;
+
+	  	.form-control {
+			height: 50px;
+	  	}
+
+	  .form-first-name:not(:focus) {
+		border-radius: 5px 5px 0 0;
+		border: 1px solid #ccc;
+	  }
+
+	  .form-last-name:not(:focus) {
+		border-radius: 0;
+		border-top: 1px solid #ccc;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		border-left: 1px solid #ccc;
+	  }
+
+	  .form-street:not(:focus) {
+		border-radius: 0;
+		border-top: 0;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		border-left: 1px solid #ccc;
+	  }
+
+	  .form-city:not(:focus) {
+		border-radius: 0;
+		border-top: 0;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		border-left: 1px solid #ccc;
+	  }
+
+	  .form-state:not(:focus) {
+		border-radius: 0;
+		border-top: 0;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		border-left: 1px solid #ccc;
+	  }
+
+	  .form-state {
+		color: #888;
+	  }
+	  .form-state option {
+		color: #000000;
+	  }
+	  .form-zip:not(:focus) {
+		border-radius: 0 0 5px 5px;
+		border-top: 0;
+		border-right: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		border-left: 1px solid #ccc;
+	  }
+
+	}
+
+	.order-form {
+		margin: 10px auto;
+	  	width: 100%;
+
+	  	.form-control {
+			height: 50px;
+	  	}
+
+	}
+
+  	.additional-info {
+		padding-top: 10px;
+	}
+
+	.transaction-form {
+		border: 0;
+		padding: 15px;
+	}
+
+	.btn-tran-type {
+		color: #FFF;
+		font-size: 16px;
+		letter-spacing: 1px;
+		position: relative;
+		text-align: left;
+		width: 100%;
+
+		.caret:before {
+			position: absolute;
+			right: 6px;
+			top: 6px;
+		}
+	}
+
+	.btn-transaction {
+		width: 100%;
+	}
+}
+.has-error .form-control {
+  border-color: #a94442 !important;
+}
+
+@media (max-width: 640px)  {
+    .address-form{
+        .form-last-name:not(:focus) {
+		    border-top: 0;
+	    }
+	}
+}
+
+.navbar-right {
+	margin-right: 20px !important;
+}
+.vis-hidden {
+  visibility: hidden;
+}
+.group-remove {
+  width: 100%;
+}
+.span-remove {
+  background-color: #fff;
+  background-image: none;
+}
+
+.magForm {
+    .modal-body{
+	  padding-bottom: 0;
+	}
+
+	.modal-dialog .modal-content {
+	  font-size: 0;
+	}
+	.swipeNotReady {
+	  font-size: 22px;
+	  text-align: center;
+	  border: 2px solid #ffffff;
+	  padding:5px;
+	  border-radius: 5px;
+	}
+	.magdata {
+	  height: 1px;
+	  width: 1px;
+	  opacity: 0;
+	  filter: alpha(opacity=0);
+	  font-size:0;
+	}
+	.magdata-loading {
+	  text-align: center;
+	  padding: 0 0 25px 0;
+	}
+}

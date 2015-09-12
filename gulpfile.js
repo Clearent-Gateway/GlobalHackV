@@ -36,9 +36,7 @@ gulp.task('templates', function () {
 gulp.task('js', function () {
   return gulp.src([
             SRC_DIR + 'main/main.js',
-            SRC_DIR + '**/*.js',
-            '!' + SRC_DIR + '**/*Test.js',
-            '!' + SRC_DIR + '**/*Mock.js'])
+            SRC_DIR + '**/*.js'])
          .pipe(concat('app.js'))
          .pipe(gulp.dest(BUILD_DIR + 'js'));
 });

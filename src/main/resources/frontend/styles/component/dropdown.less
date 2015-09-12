@@ -1,0 +1,28 @@
+
+// Change caret style to
+// use nicer looking dropdown arrow
+.caret {
+	border: 0;
+	font-family: 'Clearent';
+	vertical-align: middle;
+
+	&:before {
+		content: "\e603";
+		position: relative;
+		margin-left: 5px;
+  		top: -12px;
+	}
+}
+
+.caret-sm {
+	border: 0;
+	font-family: 'Clearent';
+	font-size: 8px;
+	vertical-align: middle;
+
+	&:before {
+		content: "\e600";
+		position: relative;
+		margin-left: 2px;
+	}
+}

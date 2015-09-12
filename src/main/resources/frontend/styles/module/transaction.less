@@ -1,0 +1,112 @@
+.data-list {
+	li {
+		list-style: none;
+
+		.label {
+			color: #000;
+			display: inline-block;
+			font-size: 15px;
+			margin-right: 12px;
+			width: 120px;
+			text-align: right;
+		}
+	}
+}
+.transaction-buttons button {
+  margin-right: 7px;
+  margin-bottom:5px;
+}
+.transaction-buttons {
+	margin-top: 20px;
+}
+
+.glyphicon {
+  padding-right:10px;
+}
+
+.receiptButtonHeader{
+    width:100%;
+}
+
+@media print {
+   .no-print{
+        display:none;
+    }
+   footer.printed-page-break{
+   		page-break-after: always;
+	}
+}
+
+/* signature pad styles */
+.sigQuestion{
+  font-size: 1.5em;
+  margin:10px 0 20px;
+}
+.m-signature-pad-cover{
+  /* cover sig pad when saving to prevent editing */
+  position: absolute;
+  background-color: #888;
+  opacity: .1;
+  height: 100%;
+  width: 100%;
+}
+.m-signature-pad-container {
+  font-size: 10px;
+  display:inline-block;
+  width: ~"calc(100% - 20px)";
+  margin: 10px 10px 10px 0;
+  max-height: 400px;
+  min-width:400px;
+  max-width:900px;
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.08) inset;
+  border-radius: 4px;
+  border: 1px solid #f4f4f4;
+}
+
+.m-signature-pad-container
+canvas {
+  width: ~"calc(100% - 10px)";
+  max-width:890px;
+  //height: ~"calc(100% - 40px)";
+  //max-width: ~"calc(100% - 10px)";
+  margin: 5px;
+  border-radius: 4px;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.02) inset;
+}
+
+.m-signature-pad-footer {
+  width:100%;
+  min-height: 40px;
+  text-align:center;
+  color: #C3C3C3;
+  font-size: 1.2em;
+}
+
+.signatureImage{
+  height:80px;
+  border-bottom: 1px solid #ccc;
+}
+
+@media screen and (max-width: 1024px) {
+  .m-signature-pad-container {
+
+  }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .m-signature-pad-container {
+
+  }
+}
+
+@media screen and (max-height: 320px) {
+  .m-signature-pad-container {
+
+  }
+  .m-signature-pad-footer {
+
+  }
+
+}
