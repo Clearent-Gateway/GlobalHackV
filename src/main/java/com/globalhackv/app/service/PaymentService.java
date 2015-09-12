@@ -1,22 +1,23 @@
-//package com.globalhackv.app.service;
-//
-//import java.io.IOException;
-//import java.util.HashMap;
-//
-//import org.json.simple.JSONObject;
-//
-//import com.globalhackv.app.domain.PaymentRequest;
-//import com.globalhackv.app.domain.Transaction;
-//import com.globalhackv.app.domain.Violation;
-//
-////import com.globalhackv.app.domain.String;
-//
-///**
-// * Created by jwillard on 9/11/2015.
-// */
-//
-//public class PaymentService {
-//
+package com.globalhackv.app.service;
+
+import java.io.IOException;
+import java.util.HashMap;
+
+import org.json.simple.JSONObject;
+
+import com.globalhackv.app.domain.PaymentRequest;
+import com.globalhackv.app.domain.PaymentResponse;
+import com.globalhackv.app.domain.Transaction;
+import com.globalhackv.app.domain.Violation;
+
+//import com.globalhackv.app.domain.String;
+
+/**
+ * Created by jwillard on 9/11/2015.
+ */
+
+public class PaymentService {
+
 //	public PaymentService(String cardNum, String expDate, int amountToBePaid, Violation[] violations, String userID){
 //		pay(cardNum, expDate, amountToBePaid);
 //		update(violations, userID);
@@ -47,4 +48,31 @@
 //		}
 //		return response;
 //	}
-//}
+
+	public static PaymentResponse pay(PaymentRequest request) {
+		PaymentResponse response = new PaymentResponse();
+		response = submitPayments(request);
+//		response.setTest("accessing service yay " + request.getAmountToPay());
+//		response.setViolations(request.getViolations());
+		return response;
+	}
+
+	private static PaymentResponse submitPayments(PaymentRequest request) {
+      final String clearentRequest = "{\"type\":\"SALE\",\"card\":\"" + request.getCardNumber()
+      + "\",\"exp-date\":\"" + request.getExpDate() + "\",\"amount\":\"" + request.getAmountToPay()
+      + "\"}";
+		PaymentResponse response = new PaymentResponse();
+		String responseString = "";
+		try {
+			responseString = Transaction.requestTransaction(clearentRequest);
+			response.setTest(responseString);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return response;
+	}
+	}

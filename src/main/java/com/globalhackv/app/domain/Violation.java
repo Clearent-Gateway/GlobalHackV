@@ -11,7 +11,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Violation { 
-
+ 
 private Long citation_Numbers;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

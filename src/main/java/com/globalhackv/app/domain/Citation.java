@@ -13,7 +13,7 @@ public class Citation {
     private String firstName;
     private String lastName;
     private String dateOfBirth;
-    private String driversLiscense;
+    private String driversLicense;
     private String address;
     private String city;
     private String state;
@@ -51,12 +51,12 @@ public class Citation {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getDriversLiscense() {
-        return driversLiscense;
+    public String getDriversLicense() {
+        return driversLicense;
     }
 
-    public void setDriversLiscense(String driversLiscense) {
-        this.driversLiscense = driversLiscense;
+    public void setDriversLicense(String driversLicense) {
+        this.driversLicense = driversLicense;
     }
 
     public String getAddress() {

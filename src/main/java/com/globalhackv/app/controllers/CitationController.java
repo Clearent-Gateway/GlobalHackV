@@ -22,7 +22,7 @@ public class CitationController {
     public List<Citation> searchCitation(@RequestParam(value ="firstName", required=true) String firstName ,
                          @RequestParam(value ="lastName", required=true) String lastName ,
                          @RequestParam(value ="dateOfBirth", required=false) String dateOfBirth ,
-                         @RequestParam(value ="driversLicesnse", required=false) String driversLicesnse ,
+                         @RequestParam(value ="driversLicense", required=false) String driversLicense ,
                          @RequestParam(value ="citationNumber", required=false) String citationNumber ) {
 
 
@@ -31,7 +31,7 @@ public class CitationController {
           citation.setLastName(lastName);
           citation.setFirstName(firstName);
           citation.setDateOfBirth(dateOfBirth);
-          citation.setDriversLiscense(driversLicesnse);
+          citation.setDriversLicense(driversLicense);
         if(citationNumber!=null) {
             citation.setCitationNumber(Long.valueOf(citationNumber));
         }
