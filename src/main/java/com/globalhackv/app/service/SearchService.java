@@ -12,7 +12,6 @@ public class SearchService {
     public List<Citation>  findByCitation(Citation citation){
         List<Citation> listCitation = new ArrayList<Citation>();
         return listCitation;
-
     }
 
 
