@@ -10,7 +10,7 @@ angular.module('court')
                 controller: 'PaymentCtrl as paymentCtrl'
             })
             .when('/search', {
-                templateUrl: '/templates/search/search.html',
+                templateUrl: '/templates/citation/citations.html',
                 controller: 'SearchCtrl as searchCtrl'
             })
             /* Place new routes above these */
