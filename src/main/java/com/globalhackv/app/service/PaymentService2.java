@@ -112,7 +112,7 @@ public class PaymentService2 {
 	}
 
 	private static Date getViolationDate(Violation element) {
-		String violationDateStr = element.getStatus_Date();
+		String violationDateStr = element.getStatusDate();
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		Date violationDate = new Date();
 		try {

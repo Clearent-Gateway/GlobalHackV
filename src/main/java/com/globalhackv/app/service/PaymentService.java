@@ -180,17 +180,17 @@ public class PaymentService {
 				}
 				else if(amountLeft.compareTo(v.getFineAmount()) == 1){ // amount left is greater than fine amount
 					amountLeft = amountLeft.subtract(v.getFineAmount());
-					v.setFine_Amount(BigDecimal.ZERO);
+					v.setFineAmount(BigDecimal.ZERO);
 					v.setStatus("CLOSED");
 				}
 				else if(amountLeft.compareTo(v.getFineAmount()) == -1){ // amount left is less than fine amount
-					v.setFine_Amount(v.getFine_Amount().subtract(amountLeft));
+					v.setFineAmount(v.getFineAmount().subtract(amountLeft));
 					amountLeft = BigDecimal.ZERO;
 					v.setStatus("CONT FOR PAYMENT"); //only partially payed
 				}
 				else{ //fine amount equals amount left
 					amountLeft = BigDecimal.ZERO;
-					v.setFine_Amount(BigDecimal.ZERO);
+					v.setFineAmount(BigDecimal.ZERO);
 					v.setStatus("CLOSED");
 				}
 			}
