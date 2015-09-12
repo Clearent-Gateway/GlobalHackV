@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface CitationRepository extends JpaRepository<Citation,Long>, JpaSpecificationExecutor {
 
-    List<Citation> findByCitationNumber(Long citationNumber);
-
-
+    List<Citation> findByCitationNumber(long citationNumber);
 
 }

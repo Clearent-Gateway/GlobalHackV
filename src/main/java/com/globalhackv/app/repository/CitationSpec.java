@@ -24,7 +24,7 @@ public class CitationSpec implements Specification<Citation> {
     public Predicate toPredicate(Root<Citation> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder cb) {
         List<Predicate> predicates = new ArrayList<Predicate>();
 
-        if (StringUtils.isNotBlank(example.getFirstName())){
+        if (StringUtils.isNotBlank(example.getLastName())){
             predicates.add(cb.like(cb.lower(root.get(Citation_.lastName)), example.getLastName().toLowerCase() + "%"));
         }
 
@@ -32,15 +32,15 @@ public class CitationSpec implements Specification<Citation> {
             predicates.add(cb.like(cb.lower(root.get(Citation_.firstName)), example.getFirstName().toLowerCase() + "%"));
         }
 
-        if (StringUtils.isNotBlank(example.getFirstName())){
+        if (StringUtils.isNotBlank(example.getDateOfBirth())){
             predicates.add(cb.like(cb.lower(root.get(Citation_.dateOfBirth)), example.getDateOfBirth().toLowerCase() + "%"));
         }
 
-        if (StringUtils.isNotBlank(example.getFirstName())){
+        if (StringUtils.isNotBlank(example.getDriversLiscense())){
             predicates.add(cb.like(cb.lower(root.get(Citation_.driversLiscense)), example.getDriversLiscense().toLowerCase() + "%"));
         }
 
-        if (StringUtils.isNotBlank(example.getFirstName())){
+        if (StringUtils.isNotBlank(example.getAddress())){
             predicates.add(cb.like(cb.lower(root.get(Citation_.address)), example.getAddress().toLowerCase() + "%"));
         }
 
