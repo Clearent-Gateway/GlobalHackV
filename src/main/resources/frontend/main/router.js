@@ -15,7 +15,7 @@ angular.module('court')
             })
             /* Place new routes above these */
             .when('/', {
-                redirectTo: '/login'
+                redirectTo: '/search'
             })
             .otherwise({
                 redirectTo: '/'

@@ -55,6 +55,10 @@
     </div>
     -->
     <div>
+        <span ng-show="citationListCtrl.citations.length>0">
+            <br>Note: Fine listed for each citation includes fines for all associated violations for the citation, including court costs. Court costs include
+            clerical fees and are required even if not appearing in court.
+        </span>
         <table class="table table-search" id="citationsTable">
             <thead>
             <tr>
@@ -67,30 +71,23 @@
                 <th>Driver's License</th>
                 <th>Citation #</th>
                 <th>Citation Date</th>
-                <th>Municipality</th>
+                <th>Fine</th>
                 <th>Court Date</th>
-                <th>Court Address</th>
-                <th></th>
+                <th>Court Address / <br>Municipality</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="row in citationListCtrl.citations" ng-class="{selected: row.isChecked}">
-                <td><input type="checkbox" ng-model="row.isChecked" ng-click="row.isChecked=!!row.isChecked" ng-change="citationListCtrl.updateSelectedCount()" /></td>
+            <tr ng-repeat="row in citationListCtrl.citations" ng-class="{selected: row.isSelected}" ng-click="row.isSelected=!row.isSelected;citationListCtrl.updateSelectedCount()">
+                <td><input type="checkbox" ng-model="row.isSelected" ng-click="row.isSelected=!row.isSelected" ng-change="citationListCtrl.updateSelectedCount()" /></td>
                 <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Name">{{row.fName}} {{row.lName}}</td>
                 <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Address">{{row.address}}<br>{{row.city}}, {{row.state}}</td>
                 <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Date Of Birth">{{row.dateOfBirth}}</td>
                 <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Driver's License">{{row.driversLicense}}</td>
                 <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Citation #">{{row.citationNumber}}</td>
                 <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Citation Date">{{row.citationDate}}</td>
-                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Municipality">{{row.municipality}}</td>
+                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Fine" class="currency">{{row.amount}}</td>
                 <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Court Date">{{row.courtDate}}</td>
-                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Court Address">{{row.courtAddress}}</td>
-                <td class="actions" ng-class="{'no-button': !row.buttons.button[0]}">
-                    <div class="btn-group" dropdown>
-                        <button   ng-if="row.buttons.button[0]" type="button" ng-click="citationsListCtrl.executeButton(row, row.buttons.button[0].url)" class="btn btn-default">Pay</button>
-                    </div>
-
-                </td>
+                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Court Address">{{row.courtAddress}}<br>{{row.municipality}}</td>
             </tr>
             </tbody>
         </table>

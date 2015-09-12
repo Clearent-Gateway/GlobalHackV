@@ -1,7 +1,7 @@
 angular
     .module('court')
-    .service('RequestService', ['$http', '$log', '$cookies',
-        function RequestService($http, $log, $cookies) {
+    .service('RequestService', ['$http', '$log',
+        function RequestService($http, $log) {
 
         var baseUrl = "localhost:8080";
 
