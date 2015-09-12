@@ -7,66 +7,73 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * Created by jwillard on 9/11/2015.
- */
+* Created by jwillard on 9/11/2015.
+*/
 @Entity
 public class Violation {
 
-private Long citation_Numbers;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String violation_Number;
-    private String violation_Description;
-    private boolean warrant_Status;
-    private String warrant_Number;
+    private long citationNumber;
+    private String violationNumber;
+    private String violationDescription;
+    private boolean warrantStatus;
+    private String warrantNumber;
     private String status;
-    private String status_Date;
-    private BigDecimal fine_Amount;
-    private BigDecimal court_Costs;
+    private String statusDate;
+    private BigDecimal fineAmount;
+    private BigDecimal courtCosts;
 
     public Violation() {
 
     }
-
-    public Long getCitation_Numbers() {
-        return citation_Numbers;
+    public long getId() {
+        return id;
     }
 
-    public void setCitation_Numbers(Long citation_Numbers) {
-        this.citation_Numbers = citation_Numbers;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getViolation_Number() {
-        return violation_Number;
+    public long getCitationNumber() {
+        return citationNumber;
     }
 
-    public void setViolation_Number(String violation_Number) {
-        this.violation_Number = violation_Number;
+    public void setCitationNumber(long citationNumber) {
+        this.citationNumber = citationNumber;
     }
 
-    public String getViolation_Description() {
-        return violation_Description;
+    public String getViolationNumber() {
+        return violationNumber;
     }
 
-    public void setViolation_Description(String violation_Description) {
-        this.violation_Description = violation_Description;
+    public void setViolationNumber(String violationNumber) {
+        this.violationNumber = violationNumber;
     }
 
-    public boolean isWarrant_Status() {
-        return warrant_Status;
+    public String getViolationDescription() {
+        return violationDescription;
     }
 
-    public void setWarrant_Status(boolean warrant_Status) {
-        this.warrant_Status = warrant_Status;
+    public void setViolationDescription(String violationDescription) {
+        this.violationDescription = violationDescription;
     }
 
-    public String getWarrant_Number() {
-        return warrant_Number;
+    public boolean isWarrantStatus() {
+        return warrantStatus;
     }
 
-    public void setWarrant_Number(String warrant_Number) {
-        this.warrant_Number = warrant_Number;
+    public void setWarrantStatus(boolean warrantStatus) {
+        this.warrantStatus = warrantStatus;
+    }
+
+    public String getWarrantNumber() {
+        return warrantNumber;
+    }
+
+    public void setWarrantNumber(String warrantNumber) {
+        this.warrantNumber = warrantNumber;
     }
 
     public String getStatus() {
@@ -77,27 +84,30 @@ private Long citation_Numbers;
         this.status = status;
     }
 
-    public String getStatus_Date() {
-        return status_Date;
+    public String getStatusDate() {
+        return statusDate;
     }
 
-    public void setStatus_Date(String status_Date) {
-        this.status_Date = status_Date;
+    public void setStatusDate(String statusDate) {
+        this.statusDate = statusDate;
     }
 
-    public BigDecimal getFine_Amount() {
-        return fine_Amount;
+    public BigDecimal getFineAmount() {
+        return fineAmount;
     }
 
-    public void setFine_Amount(BigDecimal fine_Amount) {
-        this.fine_Amount = fine_Amount;
+    public void setFineAmount(BigDecimal fineAmount) {
+        this.fineAmount = fineAmount;
     }
 
-    public BigDecimal getCourt_Costs() {
-        return court_Costs;
+    public BigDecimal getCourtCosts() {
+        return courtCosts;
     }
 
-    public void setCourt_Costs(BigDecimal court_Costs) {
-        this.court_Costs = court_Costs;
+    public void setCourtCosts(BigDecimal courtCosts) {
+        this.courtCosts = courtCosts;
     }
+
+
+
 }

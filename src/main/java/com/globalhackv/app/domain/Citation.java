@@ -3,8 +3,9 @@ package com.globalhackv.app.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.List;
 
-@Entity
+@Entity(name="Citations")
 public class Citation {
 
     @Id
@@ -13,19 +14,23 @@ public class Citation {
     private String firstName;
     private String lastName;
     private String dateOfBirth;
-    private String driversLiscense;
+    private String driversLicense;
     private String address;
     private String city;
     private String state;
     private long citationNumber;
-    private String municapality;
+    private String municipality;
     private String citationDate;
     private String courtAddress;
     private String courtDate;
 
+
+
     public Citation() {
         
     }
+
+
 
     public String getFirstName() {
         return firstName;
@@ -51,12 +56,12 @@ public class Citation {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getDriversLiscense() {
-        return driversLiscense;
+    public String getDriversLicense() {
+        return driversLicense;
     }
 
-    public void setDriversLiscense(String driversLiscense) {
-        this.driversLiscense = driversLiscense;
+    public void setDriversLicense(String driversLicense) {
+        this.driversLicense = driversLicense;
     }
 
     public String getAddress() {
@@ -83,20 +88,20 @@ public class Citation {
         this.state = state;
     }
 
-    public long getCitationNumber() {
+    public String getCitationNumber() {
         return citationNumber;
     }
 
-    public void setCitationNumber(long citationNumber) {
+    public void setCitationNumber(String citationNumber) {
         this.citationNumber = citationNumber;
     }
 
-    public String getMunicapality() {
-        return municapality;
+    public String getMunicipality() {
+        return municipality;
     }
 
-    public void setMunicapality(String municapality) {
-        this.municapality = municapality;
+    public void setMunicipality(String municipality) {
+        this.municipality = municipality;
     }
 
     public String getCitationDate() {

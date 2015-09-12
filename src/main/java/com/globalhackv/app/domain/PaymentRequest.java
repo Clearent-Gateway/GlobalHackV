@@ -1,15 +1,34 @@
 package com.globalhackv.app.domain;
 
+import java.util.List;
+
 import org.json.simple.JSONObject;
 
 public class PaymentRequest {
 
     private String cardNumber;
     private String expDate;
-    private double amountToPay;
-    private long violationNumber;
+    private String amountToPay;
+    public List<Violation> getViolations() {
+		return violations;
+	}
 
-    public String getCardNumber() {
+	public void setViolations(List<Violation> violations) {
+		this.violations = violations;
+	}
+
+	private List <Violation> violations;
+    private String userId;
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getCardNumber() {
 		return cardNumber;
 	}
 
@@ -25,32 +44,15 @@ public class PaymentRequest {
 		this.expDate = expDate;
 	}
 
-	public double getAmountToPay() {
+	public String getAmountToPay() {
 		return amountToPay;
 	}
 
-	public void setAmountToPay(double amountToPay) {
+	public void setAmountToPay(String amountToPay) {
 		this.amountToPay = amountToPay;
-	}
-
-	public long getViolationNumber() {
-		return violationNumber;
-	}
-
-	public void setViolationNumber(long violationNumber) {
-		this.violationNumber = violationNumber;
 	}
 
 	public PaymentRequest() {
         
     }
-
-	public JSONObject getJSONString() {
-	  JSONObject obj = new JSONObject();
-	  obj.put("cardNumber",cardNumber);
-	  obj.put("expDate", expDate);
-	  obj.put("amountPaying",amountToPay);
-	  return obj;
-	}
-	
 }
