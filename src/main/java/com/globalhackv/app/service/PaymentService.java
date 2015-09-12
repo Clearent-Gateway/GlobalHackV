@@ -1,7 +1,9 @@
 package com.globalhackv.app.service;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.json.simple.JSONObject;
@@ -88,7 +90,29 @@ public class PaymentService {
 	}
 	
 	public void payByOldestViolation(List<Violation> sortedViolations, String amountToBePaid){
-		
+		BigDecimal amountLeft = new BigDecimal(Double.parseDouble(amountToBePaid));
+		if(amountLeft.compareTo(BigDecimal.ZERO) == 1){ //amount left is greater than zero
+			for(Violation v : sortedViolations){
+				if(amountLeft.compareTo(BigDecimal.ZERO) == 0){
+					break;
+				}
+				else if(amountLeft.compareTo(v.getFine_Amount()) == 1){ // amount left is greater than fine amount
+					amountLeft = amountLeft.subtract(v.getFine_Amount());
+					v.setFine_Amount(BigDecimal.ZERO);
+					v.setStatus("CLOSED");
+				}
+				else if(amountLeft.compareTo(v.getFine_Amount()) == -1){ // amount left is less than fine amount
+					v.setFine_Amount(v.getFine_Amount().subtract(amountLeft));
+					amountLeft = BigDecimal.ZERO;
+					v.setStatus("CONT FOR PAYMENT"); //only partially payed
+				}
+				else{ //fine amount equals amount left
+					amountLeft = BigDecimal.ZERO;
+					v.setFine_Amount(BigDecimal.ZERO);
+					v.setStatus("CLOSED");
+				}
+			}
+		}
 	}
 	
 	
