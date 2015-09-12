@@ -1,17 +1,14 @@
 package com.globalhackv.app.service;
 
 import java.io.IOException;
-<<<<<<< HEAD
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-=======
 import java.math.BigDecimal;
 import java.lang.System;
 import java.math.BigDecimal;
->>>>>>> b3ed4d1795cdc3a7b29abf16b535a34cc1ce61f5
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -62,7 +59,7 @@ public class PaymentService {
 //		return response;
 //	}
 
-	private final transactionID;
+	private int transactionID;
 
 	public static PaymentResponse pay(PaymentRequest request) {
 		PaymentResponse response = new PaymentResponse();
@@ -91,12 +88,15 @@ public class PaymentService {
 	
 	public Boolean checkSuccess(String response){
 		//parse response and check success
-		JSONObject responseJSON = new JSONObject(response);
+		//JSONObject responseJSON = new JSONObject(response);
 
-		if (responseJSON.code == 200){
+		String[] kvPairs = response.split(",");
+
+		if (kvPairs[0] == "200"){ //should be code - tests for success
 			//transaction was a success
 
-			transactionID = responseJSON.links.id;
+			String[] links = kvPairs[3].split(",");
+			String idNum = links[2];
 
 			return true;
 
@@ -108,9 +108,6 @@ public class PaymentService {
 			System.out.println("Transaction failed!");
 			return false;
 		}
-		
-		
-		return true;
 	}
 	
 	public static List<Violation> sortViolationsByDate(List<Violation> violations){
