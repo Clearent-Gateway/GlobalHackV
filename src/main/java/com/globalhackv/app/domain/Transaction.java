@@ -20,26 +20,6 @@ public class Transaction {
     private static final String POST_METHOD = "POST";
     private static final boolean OUTPUT_TRUE = true;
  
-//    public static void main(String[] args) throws Exception {
-//        String response;
-// 
-//        // sale
-//        System.out.println("Beginning Sale Request");
-//        response = requestSale();
-//        System.out.println(response);
-// 
-//    }
- 
-//    public static String requestSale() throws Exception {
-//        final String card = "4111111111111111";
-//        final String exp_date = "1219";
-//        final String amount = "25.00";
-//        final String requestBody = "{\"type\":\"SALE\",\"card\":\"" + card
-//                + "\",\"exp-date\":\"" + exp_date + "\",\"amount\":\"" + amount
-//                + "\"}";
-//        return requestTransaction(requestBody);
-//    }
- 
     public static String requestTransaction(String requestBody)
             throws IOException {
  

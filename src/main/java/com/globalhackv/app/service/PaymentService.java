@@ -1,17 +1,14 @@
 package com.globalhackv.app.service;
 
 import java.io.IOException;
-<<<<<<< HEAD
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-=======
 import java.math.BigDecimal;
 import java.lang.System;
 import java.math.BigDecimal;
->>>>>>> b3ed4d1795cdc3a7b29abf16b535a34cc1ce61f5
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -62,7 +59,7 @@ public class PaymentService {
 //		return response;
 //	}
 
-	private final transactionID;
+	private int transactionID;
 
 	public static PaymentResponse pay(PaymentRequest request) {
 		PaymentResponse response = new PaymentResponse();
@@ -70,7 +67,7 @@ public class PaymentService {
 		return response;
 	}
 
-	private static PaymentResponse submitPayments(PaymentRequest request) {
+	public static PaymentResponse submitPayments(PaymentRequest request) {
       final String clearentRequest = "{\"type\":\"SALE\",\"card\":\"" + request.getCardNumber()
       + "\",\"exp-date\":\"" + request.getExpDate() + "\",\"amount\":\"" + request.getAmountToPay()
       + "\"}";
@@ -91,12 +88,16 @@ public class PaymentService {
 	
 	public Boolean checkSuccess(String response){
 		//parse response and check success
-		JSONObject responseJSON = new JSONObject(response);
-
-		if (responseJSON.code == 200){
+		JSONObject responseJSON = new JSONObject();
+		response.concat(response);
+		
+		
+		
+		if (responseJSON.get("code") == "200"){
 			//transaction was a success
 
-			transactionID = responseJSON.links.id;
+			transactionLink = responseJSON.get("links");
+			
 
 			return true;
 

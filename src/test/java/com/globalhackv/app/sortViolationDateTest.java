@@ -2,11 +2,18 @@ package com.globalhackv.app;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.junit.Test;
 
+import com.globalhackv.app.domain.PaymentRequest;
+import com.globalhackv.app.domain.PaymentResponse;
+import com.globalhackv.app.domain.Transaction;
 import com.globalhackv.app.domain.Violation;
 import com.globalhackv.app.service.PaymentService;
 
@@ -36,5 +43,4 @@ public class sortViolationDateTest {
 		assertTrue(sortedViolations.get(1).getStatus_Date().equals("01/15/2015"));
 
 	}
-
 }
