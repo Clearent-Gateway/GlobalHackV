@@ -3,23 +3,27 @@ package com.globalhackv.app.domain;
 
 public class ClearentResponse {
 
-    private String result;
-    private String transactionId;
+    private Payload payload;
+
+    private String code; 
     
-	public ClearentResponse() {
+	public String getCode() {
+		return code;
 	}
-	
-	public String getResult() {
-		return result;
+
+	public void setCode(String code) {
+		this.code = code;
 	}
-	public void setResult(String result) {
-		this.result = result;
+
+	public Payload getPayload() {
+		return payload;
 	}
-	public String getTransactionId() {
-		return transactionId;
-	}
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
-	}
+
+	public void setPayload(Payload payload) {
+		this.payload = payload;
+	} 
+    
+    
+    
 	
 }

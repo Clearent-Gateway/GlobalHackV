@@ -86,9 +86,11 @@
             <artifactId>sqljdbc4-2.0.jar</artifactId>
             <version>4.0</version>
         </dependency>
-
-
-
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>
