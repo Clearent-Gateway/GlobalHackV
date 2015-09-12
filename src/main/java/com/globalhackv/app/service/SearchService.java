@@ -14,6 +14,7 @@ public class SearchService {
     @Autowired
     CitationRepository citationRepository;
 
+
     public List<Citation> findByCitation(Citation example) {
         CitationSpec citationSpec = new CitationSpec(example);
         return citationRepository.findAll(citationSpec);
