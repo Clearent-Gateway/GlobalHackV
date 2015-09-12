@@ -14,7 +14,7 @@ public class Citation_ {
     public static volatile SingularAttribute<Citation, String> firstName;
     public static volatile SingularAttribute<Citation, String> lastName;
     public static volatile SingularAttribute<Citation, String> dateOfBirth;
-    public static volatile SingularAttribute<Citation, String> driversLiscense;
+    public static volatile SingularAttribute<Citation, String> driversLicense;
     public static volatile SingularAttribute<Citation, String> address;
     public static volatile SingularAttribute<Citation, String> city;
     public static volatile SingularAttribute<Citation, String> state;
