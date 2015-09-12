@@ -27,7 +27,7 @@ public class CitationController {
                          @RequestParam(value ="lastName", required=true) String lastName ,
                          @RequestParam(value ="dateOfBirth", required=false) String dateOfBirth ,
                          @RequestParam(value ="driversLicesnse", required=false) String driversLicesnse ,
-                         @RequestParam(value ="citationNumber", required=false) long citationNumber ) {
+                         @RequestParam(value ="citationNumber", required=false) Long citationNumber ) {
 
 
          List<Citation> citations = new ArrayList<Citation>();
@@ -39,7 +39,9 @@ public class CitationController {
           citation.setDateOfBirth(dateOfBirth);
           citation.setDriversLicense(driversLicesnse);
 
-            citation.setCitationNumber(citationNumber);
+         if(citationNumber!=null) {
+             citation.setCitationNumber(citationNumber);
+         }
 
         citations.add(citation);
         List<Citation> citationResults = searchService.findByCitation(citation);
@@ -47,7 +49,7 @@ public class CitationController {
         Map<Citation,List<Violation>> citationsWithViolations = new HashMap<Citation, List<Violation>>();
 
         for(Citation cit : citationResults) {
-            List<Violation> violations = searchService.findViolation(citationNumber);
+            List<Violation> violations = searchService.findViolation(cit.getCitationNumber());
             citationsWithViolations.put(cit,violations);
         }
 

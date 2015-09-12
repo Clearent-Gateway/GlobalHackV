@@ -27,8 +27,9 @@ public class SearchService {
     }
 
     public List<Violation> findViolation(long citationNumber) {
-        ViolationSpec violationSpec = new ViolationSpec(citationNumber);
-        return violationRepository.findAll(violationSpec);
+//        ViolationSpec violationSpec = new ViolationSpec(citationNumber);
+//        return violationRepository.findAll(violationSpec);
+        return violationRepository.findByCitationNumber(citationNumber);
     }
 
 }
