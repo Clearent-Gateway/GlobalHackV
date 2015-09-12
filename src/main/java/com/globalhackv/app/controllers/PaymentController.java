@@ -2,6 +2,7 @@ package  com.globalhackv.app.controllers;
 
 import com.globalhackv.app.domain.PaymentRequest;
 import com.globalhackv.app.domain.PaymentResponse;
+import com.globalhackv.app.service.PaymentService;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ public class PaymentController {
 	@RequestMapping(method = RequestMethod.POST)
 	public PaymentResponse pay(@RequestBody PaymentRequest request) {
 		PaymentResponse response = new PaymentResponse();
-		response.setTest("first response service");
+		response = PaymentService.pay(request);
 		return response;
 	}
 }

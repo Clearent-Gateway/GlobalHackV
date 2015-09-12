@@ -8,7 +8,7 @@ public class PaymentRequest {
 
     private String cardNumber;
     private String expDate;
-    private double amountToPay;
+    private String amountToPay;
     public List<Violation> getViolations() {
 		return violations;
 	}
@@ -44,24 +44,15 @@ public class PaymentRequest {
 		this.expDate = expDate;
 	}
 
-	public double getAmountToPay() {
+	public String getAmountToPay() {
 		return amountToPay;
 	}
 
-	public void setAmountToPay(double amountToPay) {
+	public void setAmountToPay(String amountToPay) {
 		this.amountToPay = amountToPay;
 	}
 
 	public PaymentRequest() {
         
     }
-
-	public JSONObject getJSONString() {
-	  JSONObject obj = new JSONObject();
-	  obj.put("cardNumber",cardNumber);
-	  obj.put("expDate", expDate);
-	  obj.put("amountPaying",amountToPay);
-	  return obj;
-	}
-	
 }

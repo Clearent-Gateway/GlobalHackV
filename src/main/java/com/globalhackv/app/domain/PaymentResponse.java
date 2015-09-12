@@ -1,10 +1,20 @@
 package com.globalhackv.app.domain;
 
-import org.json.simple.JSONObject;
+import java.util.List;
+
 
 public class PaymentResponse {
 
     private String test;
+    private List<Violation> violations;
+
+	public List<Violation> getViolations() {
+		return violations;
+	}
+
+	public void setViolations(List<Violation> violations) {
+		this.violations = violations;
+	}
 
 	public String getTest() {
 		return test;
