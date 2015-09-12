@@ -1,0 +1,56 @@
+<ng-form>
+
+    <!--
+    <div class="alert alert-danger" role="alert"
+         ng-show="searchResult=='error'" id="searchdeclined">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        No citations found - please check search options and try again.
+    </div>
+    -->
+
+    <div>
+        <table class="table table-search" id="citationsTable">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>DOB</th>
+                <th>Driver's License</th>
+                <th>Citation #</th>
+                <th>Citation Date</th>
+                <th>Municipality</th>
+                <th>Court Date</th>
+                <th>Court Address</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in citationListCtrl.citations">
+                <td></td>
+                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" >{{row.fName}} {{row.lName}}</td>
+                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" >{{row.address}}<br>{{row.city}}, {{row.state}}</td>
+                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" >{{row.dateOfBirth}}</td>
+                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" >{{row.driversLicense}}</td>
+                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" >{{row.citationNumber}}</td>
+                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" >{{row.municipality}}</td>
+                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" >{{row.citationDate}}</td>
+                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" >{{row.courtDate}}</td>
+                <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" >{{row.courtAddress}}</td>
+                <td class="actions" ng-class="{'no-button': !row.buttons.button[0]}">
+                    <div class="btn-group" dropdown>
+                        <button   ng-if="row.buttons.button[0]" type="button" ng-click="citationsListCtrl.executeButton(row, row.buttons.button[0].url)" class="btn btn-default">Pay</button>
+                    </div>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--
+    <div class="alert alert-warning" role="alert" ng-show="searchResult=='empty'">
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>Please wait - searching for citations . . .
+    </div>
+    -->
+</ng-form>

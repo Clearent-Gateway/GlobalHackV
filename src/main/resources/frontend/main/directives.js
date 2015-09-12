@@ -118,34 +118,5 @@ angular.module('court')
             }
         }
     })
-    .directive('merchantReceipt',['ReceiptService', function (ReceiptService) {
 
-        var merchantReceipt =
-            ReceiptService.merchantHeader +
-            ReceiptService.transactionHeader +
-            ReceiptService.transactionDetail +
-            ReceiptService.authDetails +
-            ReceiptService.merchantTransactionTotals +
-            ReceiptService.signature +
-            ReceiptService.footer;
-
-        return {
-            template : merchantReceipt
-        };
-
-    }])
-    .directive('customerReceipt',['ReceiptService', function (ReceiptService) {
-
-        var customerReceipt =
-            ReceiptService.merchantHeader +
-            ReceiptService.transactionHeader +
-            ReceiptService.transactionDetail +
-            ReceiptService.authDetails +
-            ReceiptService.customerTransactionTotals +
-            ReceiptService.footer;
-
-        return {
-            template : customerReceipt
-        };
-
-    }]);
+    ;
