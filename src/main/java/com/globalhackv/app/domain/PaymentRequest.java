@@ -1,5 +1,7 @@
 package com.globalhackv.app.domain;
 
+import java.util.List;
+
 import org.json.simple.JSONObject;
 
 public class PaymentRequest {
@@ -7,9 +9,26 @@ public class PaymentRequest {
     private String cardNumber;
     private String expDate;
     private double amountToPay;
-    private long violationNumber;
+    public List<Violation> getViolations() {
+		return violations;
+	}
 
-    public String getCardNumber() {
+	public void setViolations(List<Violation> violations) {
+		this.violations = violations;
+	}
+
+	private List <Violation> violations;
+    private String userId;
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getCardNumber() {
 		return cardNumber;
 	}
 
@@ -31,14 +50,6 @@ public class PaymentRequest {
 
 	public void setAmountToPay(double amountToPay) {
 		this.amountToPay = amountToPay;
-	}
-
-	public long getViolationNumber() {
-		return violationNumber;
-	}
-
-	public void setViolationNumber(long violationNumber) {
-		this.violationNumber = violationNumber;
 	}
 
 	public PaymentRequest() {
