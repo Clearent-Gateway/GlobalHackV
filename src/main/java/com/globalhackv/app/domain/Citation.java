@@ -1,4 +1,4 @@
-
+package com.globalhackv.app.domain;
 
 public class Citation {
 
