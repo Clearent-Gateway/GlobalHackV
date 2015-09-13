@@ -48,15 +48,17 @@ public class SMSController {
 
 		String returnMessage = "";
 		if ("?".equalsIgnoreCase(body)) {
-			returnMessage = "Welcome to the Ticket Retrieval Hotline. Please enter either your driver's license number or your first name, last name, and date of birth (mm/dd/yyyy); each separated by a space";
+			returnMessage = "Welcome to the Ticket Retrieval Hotline. Please enter your driver's license # or your first name, last name, and date of birth (mm/dd/yy); separate by a space";
 		} else {
 			String[] theStrings = body.split(" ");
 			List<String> searchStrings = new ArrayList<String>();
 			searchStrings.add(theStrings[0]);
-			searchStrings.add(theStrings[1]);
-			searchStrings.add(theStrings[2]);
-			// TODO Get list of search strings from the request.
-			// List<String> searchStrings = getSearchStrings(request);
+			if(theStrings.length > 1) {
+				searchStrings.add(theStrings[1]);
+			}
+			if(theStrings.length > 2) {
+				searchStrings.add(theStrings[2]);
+			}
 
 			List<Citation> citations = smsRequestService.searchForCitations(
 					fromNumber, searchStrings);
@@ -83,10 +85,12 @@ public class SMSController {
 							}
 						}
 						
-						sb.append(" Ticket #: " + citation.getCitationNumber()
-								+ " Ticket Date: " + stringDate + " Court Address: "
-								+ citation.getCourtAddress() + " Court Date:"
-								+ stringCourtDate + " Violation: " + violation + " Warrant? " + warrant);
+						sb.append("Ticket#: " + citation.getCitationNumber() + "\n"
+								+ "Court Address: " + citation.getCourtAddress() + "\n"
+							    + "Municipality: " + citation.getMunicipality() + "\n" 
+								+ "Court Date: " + stringCourtDate + "\n" 
+							    + "Violation: " + violation + "\n" 
+								+ "Warrant? " + warrant + "\n");
 					}
 					returnMessage = sb.toString();
 				} catch (Exception e) {
