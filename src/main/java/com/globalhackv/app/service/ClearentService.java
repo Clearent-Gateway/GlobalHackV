@@ -1,4 +1,4 @@
-package com.globalhackv.app.domain;
+package com.globalhackv.app.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
  
-public class SubmitTransaction {
+public class ClearentService {
  
     private static final String API_URI = "https://gateway-sb.clearent.net/rest/v2/transactions";
     private static final String API_KEY = "762ad38136b54570a03be604a5a5a1e5";
