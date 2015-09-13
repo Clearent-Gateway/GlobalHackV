@@ -48,7 +48,7 @@ public class SMSController {
 
 		String returnMessage = "";
 		if ("?".equalsIgnoreCase(body)) {
-			returnMessage = "Welcome to the Ticket Retrieval Hotline. Please enter either your driver's license number or your first name, last name, and date of birth (mm/dd/yyyy); each separated by a space";
+			returnMessage = "Welcome to the Ticket Retrieval Hotline. Please enter your driver's license # or your first name, last name, and date of birth (mm/dd/yy); separate by a space";
 		} else {
 			String[] theStrings = body.split(" ");
 			List<String> searchStrings = new ArrayList<String>();
