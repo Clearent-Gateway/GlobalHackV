@@ -17,11 +17,13 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.globalhackv.app.domain.Citation;
 import com.globalhackv.app.domain.ClearentResponse;
 import com.globalhackv.app.domain.PaymentRequest;
 import com.globalhackv.app.domain.PaymentResponse;
 import com.globalhackv.app.domain.Transaction;
 import com.globalhackv.app.domain.Violation;
+import com.globalhackv.app.repository.CitationRepository;
 import com.globalhackv.app.repository.ViolationRepository;
 import com.globalhackv.app.DBConfiguration;
 import com.google.gson.Gson;
@@ -36,7 +38,8 @@ import com.google.gson.Gson;
 public class PaymentService {
 	   @Autowired
 	    ViolationRepository violationRepository;
-	private int transactionID;
+	   @Autowired
+	    CitationRepository citationRepository;
 
 	public  PaymentResponse pay(PaymentRequest request) {
 		PaymentResponse response = new PaymentResponse();
@@ -118,7 +121,7 @@ public class PaymentService {
 		}
 	}
 
-	public static List<Violation> sortViolationsByDate(List<Violation> violations){
+	public List<Violation> sortViolationsByDate(List<Violation> violations){
 		List<Violation> sortedViolations = new ArrayList<Violation>();
 		while (violations.size()>0){
 			int oldestId = getOldest(violations);
@@ -128,7 +131,7 @@ public class PaymentService {
 		return sortedViolations;
 	}
 
-	private static int getOldest (List<Violation> violations) {
+	private int getOldest (List<Violation> violations) {
 		int oldestViolationIndex = 0;
 		Date oldestViolationDate = new Date ();
 
@@ -136,24 +139,32 @@ public class PaymentService {
 			Date violationDate = getViolationDate(violations.get(i));
 			if(violationDate.before(oldestViolationDate)){
 				oldestViolationIndex = i;
+			}else if(violationDate.equals(oldestViolationDate)){
+				oldestViolationIndex = i;
 			}
 		}
 
 		return oldestViolationIndex;
 	}
 
-	private static Date getViolationDate(Violation element) {
-		String violationDateStr = element.getStatusDate();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+	private Date getViolationDate(Violation element) {
+	//	String violationDateStr = element.getStatusDate();
+		String violationCitationDateStr = getCitationDate(element.getCitationNumber());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
 		Date violationDate = new Date();
 		try {
-			violationDate = dateFormat.parse(violationDateStr);
+			violationDate = dateFormat.parse(violationCitationDateStr);
 
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return violationDate;
+	}
+
+	private String getCitationDate(long citationNumber) {
+		List<Citation> citations = citationRepository.findByCitationNumber(citationNumber);
+		return citations.get(0).getCitationDate();
 	}
 
 	public static List<Violation> payByOldestViolation(List<Violation> sortedViolations, String amountToBePaid){ //UPDATE DATABASE STUFF SHOULD GO HERE
