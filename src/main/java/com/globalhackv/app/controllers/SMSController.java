@@ -3,7 +3,8 @@ package com.globalhackv.app.controllers;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List; 
+import java.util.Date;
+import java.util.List;
   
 
 
@@ -59,13 +60,29 @@ public class SMSController {
     		//List<String> searchStrings = getSearchStrings(request);
 
     		List<Citation> citations = smsRequestService.searchForCitations(fromNumber, searchStrings);
-    		
-    		if(!citations.isEmpty()) {
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+            SimpleDateFormat newFormat = new SimpleDateFormat("MM/dd/yyyy");
+
+            if(!citations.isEmpty()) {
     			StringBuilder sb = new StringBuilder();
-    			for(Citation citation: citations) {
-    			    sb.append(" Ticket #: " + citation.getCitationNumber() + " Date: " + citation.getCitationDate().toString());
-    			}
-    			returnMessage = sb.toString();
+
+                    try {
+
+                        for(Citation citation: citations) {
+                        Date date = sdf.parse(citation.getCitationDate());
+                        String stringDate = newFormat.format(date);
+
+
+                        sb.append(" Ticket #: " + citation.getCitationNumber() + " Date: " +stringDate );
+                    }
+                    returnMessage = sb.toString();
+                    }catch (Exception e){
+                        System.out.println(e);
+                    }
+
+
     		} else {
     			returnMessage = "No tickets found";    			
     		}

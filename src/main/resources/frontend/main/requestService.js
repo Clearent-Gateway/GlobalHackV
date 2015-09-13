@@ -28,14 +28,14 @@ angular
 
         this.getPaymentRequest = function(paymentDetails){
             return {
-                method: 'GET',
-                url: 'http://'+this.getBaseUrl() + paymentController + paymentDetails,
+                method: 'POST',
+                url: 'http://'+this.getBaseUrl()+paymentController,
                 headers: {
                     'Content-Type': 'application/json',
                     'accept': 'application/json'
-                }
+                },
+                data: paymentDetails
             };
-
         };
 
         this.send = function (req){
