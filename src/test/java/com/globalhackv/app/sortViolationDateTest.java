@@ -9,6 +9,7 @@ import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.globalhackv.app.domain.PaymentRequest;
@@ -19,6 +20,7 @@ import com.globalhackv.app.service.PaymentService;
 
 public class sortViolationDateTest {
 
+    @Ignore
 	@Test
 	public void sortViolationList() {
 		Violation oldViolation = new Violation();
