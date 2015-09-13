@@ -22,21 +22,14 @@ public class SMSRequestServiceImpl implements SMSRequestService {
 	public List<Citation> searchForCitations(String phoneNumber,
 			List<String> searchStrings) {
 		
-		//TODO Query for other search strings that were previously persisted for the given phone number
-		
-		//TODO combine any search strings found with the current ones being provided.
-		
-		//TODO use the search service to query for citations.
-		
-		//TODO handle one citation returned.
-		
-		//TODO handle multiple citations returned.
-		
-		//TODO handle zero citations returned.
-
         Citation citation = new Citation();
-        citation.setFirstName(searchStrings.get(0));
-        citation.setLastName(searchStrings.get(1));
+        if(searchStrings.size() == 1) {
+        	citation.setDriversLicense(searchStrings.get(0));
+        } else {
+            citation.setFirstName(searchStrings.get(0));
+            citation.setLastName(searchStrings.get(1));
+            //citation.setCitationDate(searchStrings.get(2));
+        }
 
         List<Citation> citations = searchService.findByCitation(citation);
 
