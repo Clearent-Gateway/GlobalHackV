@@ -5,6 +5,7 @@ angular.module('court')
         var vm = this;
         vm.result = {};
         vm.makePayment = makePayment;
+        vm.test= test;
         vm.removeAlpha = removeAlpha;
         vm.citations = CitationService.getCitations();
         vm.paymentTotal = 0;
@@ -28,24 +29,49 @@ angular.module('court')
 
         getPaymentTotal();
 
-        function makePayment(payment){
+        function test(payment) {
             console.log(payment);
 
             var paymentData = {};
-            paymentData.amountToPay = stripAlpha(payment.amount,true);
-            paymentData.cardNumber = stripAlpha(payment.card,false);
-            paymentData.expDate = stripAlpha(payment.expDate,false);
+            paymentData.amountToPay = stripAlpha(payment.amount, true);
+            paymentData.cardNumber = stripAlpha(payment.card, false);
+            paymentData.expDate = stripAlpha(payment.expDate, false);
             console.log(paymentData);
 
             var violations = [];
-            for (var i=0;i<vm.citations.length;i++){
-                for(var j=0;j<vm.citations[i].violations.length;j++) {
+            for (var i = 0; i < vm.citations.length; i++) {
+                for (var j = 0; j < vm.citations[i].violations.length; j++) {
                     violations.push(vm.citations[i].violations[j]);
                 }
             }
-
+            paymentData.violations = violations;
             var req = RequestService.getPaymentRequest(paymentData);
             console.log(req);
+            console.log('-------------------------------------------------------');
+            console.log(JSON.stringify(req));
+            console.log('-------------------------------------------------------');
+        }
+        function makePayment(payment){
+                console.log(payment);
+
+                var paymentData = {};
+                paymentData.amountToPay = stripAlpha(payment.amount,true);
+                paymentData.cardNumber = stripAlpha(payment.card,false);
+                paymentData.expDate = stripAlpha(payment.expDate,false);
+                console.log(paymentData);
+
+                var violations = [];
+                for (var i=0;i<vm.citations.length;i++){
+                    for(var j=0;j<vm.citations[i].violations.length;j++) {
+                        violations.push(vm.citations[i].violations[j]);
+                    }
+                }
+                paymentData.violations = violations;
+                var req = RequestService.getPaymentRequest(paymentData);
+                console.log(req);
+                console.log('-------------------------------------------------------');
+                console.log (JSON.stringify(req));
+                console.log('-------------------------------------------------------');
 
             RequestService.send(req).then(
                 function (result) {
