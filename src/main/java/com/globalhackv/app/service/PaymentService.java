@@ -14,13 +14,15 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.globalhackv.app.domain.ClearentResponse;
 import com.globalhackv.app.domain.PaymentRequest;
 import com.globalhackv.app.domain.PaymentResponse;
-import com.globalhackv.app.domain.SubmitTransaction;
 import com.globalhackv.app.domain.Transaction;
 import com.globalhackv.app.domain.Violation;
+import com.globalhackv.app.repository.ViolationRepository;
 import com.globalhackv.app.DBConfiguration;
 import com.google.gson.Gson;
 
@@ -30,24 +32,26 @@ import com.google.gson.Gson;
  * Created by jwillard on 9/11/2015.
  */
 
+@Service
 public class PaymentService {
-
+	   @Autowired
+	    ViolationRepository violationRepository;
 	private int transactionID;
 
-	public static PaymentResponse pay(PaymentRequest request) {
+	public  PaymentResponse pay(PaymentRequest request) {
 		PaymentResponse response = new PaymentResponse();
 		response = submitPayments(request);
 		return response;
 	}
 
-	public static PaymentResponse submitPayments(PaymentRequest request) {
+	public  PaymentResponse submitPayments(PaymentRequest request) {
 		final String clearentRequest = "{\"type\":\"SALE\",\"card\":\"" + request.getCardNumber()
 		+ "\",\"exp-date\":\"" + request.getExpDate() + "\",\"amount\":\"" + request.getAmountToPay()
 		+ "\"}";
 		PaymentResponse response = new PaymentResponse();
 		String responseString = "";
 		try {
-			responseString = SubmitTransaction.requestTransaction(clearentRequest);
+			responseString = ClearentService.requestTransaction(clearentRequest);
 			ClearentResponse clearentResponse = createClearentResponse(responseString, request);
 			if(checkSuccess(clearentResponse)){	
 				List<Violation> violations = request.getViolations();
@@ -79,10 +83,15 @@ public class PaymentService {
 			return response;
 		}
 
-	private static void updateDatabase(List<Violation> violations) {
+	private  void updateDatabase(List<Violation> violations) {
 		for (Violation e : violations){
 			System.out.println(" Violation # " + e.getViolationNumber() +" amount: " + e.getFineAmount());
+			if(e.getFineAmount()!=null){
+				violationRepository.updateViolationAmountAndStatus(e.getFineAmount(), e.getStatus(), e.getViolationNumber());
+			}
 		}
+		
+		//TODO:
 	}
 
 	private static ClearentResponse createClearentResponse(String responseString, PaymentRequest request) {
@@ -135,7 +144,7 @@ public class PaymentService {
 
 	private static Date getViolationDate(Violation element) {
 		String violationDateStr = element.getStatusDate();
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
 		Date violationDate = new Date();
 		try {
 			violationDate = dateFormat.parse(violationDateStr);
@@ -148,10 +157,15 @@ public class PaymentService {
 	}
 
 	public static List<Violation> payByOldestViolation(List<Violation> sortedViolations, String amountToBePaid){ //UPDATE DATABASE STUFF SHOULD GO HERE
+		
+		ArrayList<Violation> toRemove = new ArrayList<Violation>();
 		BigDecimal amountLeft = new BigDecimal(Double.parseDouble(amountToBePaid));
 		if(amountLeft.compareTo(BigDecimal.ZERO) == 1){ //amount left is greater than zero
 			for(Violation v : sortedViolations){
-				if(amountLeft.compareTo(BigDecimal.ZERO) == 0){
+				if(v.getStatus().equals("DISMISS WITHOUT COSTS")){
+					toRemove.add(v);
+				}
+				else if(amountLeft.compareTo(BigDecimal.ZERO) == 0){
 					break;
 				}
 				else if(amountLeft.compareTo(v.getFineAmount()) == 1){ // amount left is greater than fine amount
@@ -170,6 +184,9 @@ public class PaymentService {
 					v.setStatus("CLOSED");
 				}
 			}
+		}
+		for(int i = 0; i < toRemove.size(); i++){
+			sortedViolations.remove(toRemove.get(i));
 		}
 		return sortedViolations;
 	}

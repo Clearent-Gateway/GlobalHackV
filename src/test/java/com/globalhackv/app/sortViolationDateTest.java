@@ -13,8 +13,8 @@ import org.junit.Test;
 
 import com.globalhackv.app.domain.PaymentRequest;
 import com.globalhackv.app.domain.PaymentResponse;
-import com.globalhackv.app.domain.SubmitTransaction;
 import com.globalhackv.app.domain.Violation;
+import com.globalhackv.app.service.ClearentService;
 import com.globalhackv.app.service.PaymentService;
 
 public class sortViolationDateTest {
