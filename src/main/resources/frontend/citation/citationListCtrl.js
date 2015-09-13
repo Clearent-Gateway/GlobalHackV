@@ -1,10 +1,10 @@
 angular
     .module('court')
-    .controller('CitationListCtrl', ['CitationService','$scope', '$modal', '$location',
-        function (CitationService, $scope, $modal, $location) {
+    .controller('CitationListCtrl', ['RequestService','CitationService','$scope', '$modal', '$location',
+        function (RequestService, CitationService, $scope, $modal, $location) {
 
             var vm = this;
-            vm.search = search;
+            vm.searchCitations = searchCitations;
             vm.goToPayment = goToPayment;
             vm.selectAllRows = selectAllRows;
             vm.updateSelectedCount = updateSelectedCount;
@@ -30,10 +30,52 @@ angular
                 vm.allItemsSelected = (vm.selectedCount==vm.citations.length)&&vm.citations.length>0;
             }
 
-            function search(){
+            function searchCitations(search){
                 // run citation query
+                var searchCriteria = "";
+                var joiner = "?";
+                if(search.firstName&&search.firstName.length>0){
+                    searchCriteria += joiner + "firstName=" + search.firstName;
+                    joiner = "&";
+                }
+                if(search.lastName&&search.lastName.length>0){
+                    searchCriteria += joiner + "lastName=" + search.lastName;
+                    joiner = "&";
+                }
+                if(search.dateOfBirth&&search.dateOfBirth.length>0){
+                    searchCriteria += joiner + "dateOfBirth=" + search.dateOfBirth;
+                    joiner = "&";
+                }
+                if(search.driversLicense&&search.driversLicense.length>0){
+                    searchCriteria += joiner + "driversLicesnse=" + search.driversLicense;
+                    joiner = "&";
+                }
+                if(search.citationNumber&&search.citationNumber.length>0){
+                    searchCriteria += joiner + "citationNumber=" + search.citationNumber;
+                    joiner = "&";
+                }
+
+                console.log(search);
+                console.log(searchCriteria);
+                var req = RequestService.getSearchObject(searchCriteria);
+                console.log(req);
+                RequestService.send(req).then(
+                    function (result) {
+                        console.log (JSON.stringify(result));
+                        if (result.status == 200) {
+                            console.log (JSON.stringify(result));
+                            vm.citations = result.data;
+                            vm.selectedCount = 0;
+                        }
+
+                    },
+                    function (reason) {
+                        // need to show error
+                        console.log ("bad----" + JSON.stringify(reason));
+                    });
 
                 // the results
+                /*
                 var newCitations = [
                     {
                         "fName": "NIck",
@@ -112,6 +154,7 @@ angular
                 ];
                 vm.citations = newCitations;
                 vm.selectedCount = 0;
+                */
             }
 
             function goToPayment(){

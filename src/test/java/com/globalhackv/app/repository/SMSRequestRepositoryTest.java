@@ -2,21 +2,23 @@ package com.globalhackv.app.repository;
 
 import com.globalhackv.app.GlobalHackVApplication;
 import com.globalhackv.app.domain.Citation;
+import com.globalhackv.app.domain.SMSRequest;
+
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = GlobalHackVApplication.class)
-public class CitationRepositoryTest {
+public class SMSRequestRepositoryTest {
 
     public static final String FIRST_NAME = "Peter";
     public static final String LAST_NAME = "Sherman";
@@ -26,41 +28,30 @@ public class CitationRepositoryTest {
     public static final int CITATION_NUMBER = 345345;
 
     @Autowired
-    CitationRepository citationRepository;
+    SMSRequestRepository smsRequestRepository;
 
     @Before
     public void setUp() throws Exception {
-        citationRepository.deleteAll();
+    	smsRequestRepository.deleteAll();
     }
 
-    @Ignore
     @Test
-         public void testFindBySpecFirstName() throws Exception {
-        Citation example = new Citation();
+    public void testFindByPhoneNumber() throws Exception {
+    	SMSRequest example = new SMSRequest();
+    	String phoneNumber = "3143744742";
+    	example.setPhoneNumber(phoneNumber);
         example.setFirstName(FIRST_NAME);
         example.setLastName(LAST_NAME);
-        example.setDateOfBirth(DATE_OF_BIRTH);
+        example.setDateOfbirth(new Date(DATE_OF_BIRTH));
         example.setDriversLicense(DRIVERS_LISCENSE);
         example.setAddress(ADDRESS);
-        citationRepository.save(example);
+        smsRequestRepository.save(example);
 
-        CitationSpec citationSpec = new CitationSpec(example);
-        List<Citation> citations = citationRepository.findAll(citationSpec);
+        List<SMSRequest> smsRequest = smsRequestRepository.findByPhoneNumber(phoneNumber);
 
-        assertEquals(FIRST_NAME,citations.get(0).getFirstName());
+        assertEquals(FIRST_NAME,smsRequest.get(0).getFirstName());
     }
 
-    @Ignore
-    @Test
-    public void testFindByCitationNumber() throws Exception {
-        Citation example = new Citation();
-        example.setCitationNumber(CITATION_NUMBER);
-        citationRepository.save(example);
-
-        List<Citation> citations = citationRepository.findByCitationNumber(CITATION_NUMBER);
-
-        assertEquals(CITATION_NUMBER,citations.get(0).getCitationNumber());
-    }
 
 
 

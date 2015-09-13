@@ -1,6 +1,6 @@
 <div class="container">
 
-    <h3 class="enter-payment-title">Please Enter Payment Information</h3>
+    <h3 class="enter-payment-title">Summary of Citations to be Paid</h3>
 
     <ng-form name="transactionForm">
 
@@ -37,7 +37,7 @@
                         <td data-label="Date Of Birth">{{row.dateOfBirth}}</td>
                         <td data-label="Citation #">{{row.citationNumber}}</td>
                         <td data-label="Citation Date">{{row.citationDate}}</td>
-                        <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Fine" class="currency">{{row.amount}}</td>
+                        <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Fine" class="currency">$ {{row.amount}}</td>
                     </tr>
                     </tbody>
                     <thead>
@@ -47,11 +47,13 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th class="currency">{{paymentCtrl.getPaymentTotal}}</th>
+                        <th class="currency">$ {{paymentCtrl.paymentTotal}}</th>
                     </tr>
                     </thead>
                 </table>
             </div>
+
+            <h3 class="enter-payment-title">Please Enter Payment Information</h3>
 
             <fieldset ng-disabled="isSaving">
                 <!-- Card Number -->
