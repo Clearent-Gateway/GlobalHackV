@@ -83,10 +83,11 @@ public class SMSController {
 							}
 						}
 						
-						sb.append(" Ticket #: " + citation.getCitationNumber()
-								+ " Ticket Date: " + stringDate + " Court Address: "
-								+ citation.getCourtAddress() + " Court Date:"
-								+ stringCourtDate + " Violation: " + violation + " Warrant? " + warrant);
+						sb.append("Ticket#: " + citation.getCitationNumber() + "\n"
+							    + "Municipality:" + citation.getMunicipality() + "\n" 
+								+ "Court Address:"
+								+ citation.getCourtAddress() + "\n" + "Court Date:"
+								+ stringCourtDate + "\n" + "Violation:" + violation + "\n" + "Warrant?" + warrant + "\n");
 					}
 					returnMessage = sb.toString();
 				} catch (Exception e) {
