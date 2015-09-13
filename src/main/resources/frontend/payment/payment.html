@@ -11,15 +11,13 @@
                 </li>
             </div>-->
 
-
-            <div class="alert alert-danger" role="alert" ng-show="paymentCtrl.result.status=='error'||paymentCtrl.result.status=='fail'" id="saleDeclined">
-                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                <b>Declined</b> - Better Get Some Loot in That Bank Account!!!
+            <div class="alert alert-success" role="alert" ng-show="paymentCtrl.result=='ok'" id="batchCloseSuccess">
+                <b>Transaction Successful</b> - Payment has been applied to your outstanding citations.
             </div>
 
-            <div class="alert alert-danger" role="alert" ng-show="paymentCtrl.result.status=='error'||paymentCtrl.result.status=='fail'" id="saleDeclined">
+            <div class="alert alert-danger" role="alert" ng-show="paymentCtrl.result=='fail'" id="saleDeclined">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                <b>Declined</b> - Better Get Some Loot in That Bank Account!!!
+                <b>Declined</b> - Transaction was declined. Please check card details and try again.
             </div>
 
             <div>

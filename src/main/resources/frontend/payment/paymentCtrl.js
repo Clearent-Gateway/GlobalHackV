@@ -9,6 +9,7 @@ angular.module('court')
         vm.citations = CitationService.getCitations();
         vm.paymentTotal = 0;
         vm.cancel = cancel;
+        vm.result = "";
         $scope.payment = {};
 
         function getPaymentTotal(){
@@ -49,18 +50,15 @@ angular.module('court')
             RequestService.send(req).then(
                 function (result) {
                     console.log (JSON.stringify(result));
-                    /*
                     if (result.status == 200) {
-                        console.log (JSON.stringify(result));
-                        vm.citations = result.data;
-                        vm.selectedCount = 0;
+                        vm.result = "ok";
                     }
-                    */
 
                 },
                 function (reason) {
                     // need to show error
                     console.log ("bad----" + JSON.stringify(reason));
+                    vm.result = "fail";
                 });
 
         }
