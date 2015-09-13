@@ -55,10 +55,11 @@ angular
                     joiner = "&";
                 }
 
+                var req = RequestService.getSearchObject(searchCriteria);
                 console.log(search);
                 console.log(searchCriteria);
-                var req = RequestService.getSearchObject(searchCriteria);
                 console.log(req);
+
                 RequestService.send(req).then(
                     function (result) {
                         console.log (JSON.stringify(result));

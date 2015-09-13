@@ -17,6 +17,10 @@
                 <b>Declined</b> - Better Get Some Loot in That Bank Account!!!
             </div>
 
+            <div class="alert alert-danger" role="alert" ng-show="paymentCtrl.result.status=='error'||paymentCtrl.result.status=='fail'" id="saleDeclined">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <b>Declined</b> - Better Get Some Loot in That Bank Account!!!
+            </div>
 
             <div>
                 <table class="table table-search" id="citationsTable">
@@ -32,12 +36,12 @@
                     </thead>
                     <tbody>
                     <tr ng-repeat="row in paymentCtrl.citations">
-                        <td data-label="Name">{{row.fName}} {{row.lName}}</td>
-                        <td data-label="Address">{{row.address}}<br>{{row.city}}, {{row.state}}</td>
-                        <td data-label="Date Of Birth">{{row.dateOfBirth}}</td>
-                        <td data-label="Citation #">{{row.citationNumber}}</td>
-                        <td data-label="Citation Date">{{row.citationDate}}</td>
-                        <td ng-click="citationListCtrl.rowDetail(row,'citationDetail')" data-label="Fine" class="currency">$ {{row.amount}}</td>
+                        <td data-label="Name">{{row.citation.firstName}} {{row.citation.lastName}}</td>
+                        <td data-label="Address">{{row.citation.address}}<br>{{row.citation.city}}, {{row.citation.state}}</td>
+                        <td data-label="Date Of Birth">{{row.citation.dateOfBirth}}</td>
+                        <td data-label="Citation #">{{row.citation.citationNumber}}</td>
+                        <td data-label="Citation Date">{{row.citation.citationDate}}</td>
+                        <td data-label="Fine" class="currency">$ {{row.totalAmount}}</td>
                     </tr>
                     </tbody>
                     <thead>
@@ -56,42 +60,48 @@
             <h3 class="enter-payment-title">Please Enter Payment Information</h3>
 
             <fieldset ng-disabled="isSaving">
-                <!-- Card Number -->
+                <!--
                 <div class="row">
                     <div class="col-sm-6">
                         <label class="form-label">First Name</label>
-                        <input autocomplete="off" ng-model="sale['first-name']" placeholder="First Name on Card" name="fName" id="fName" ng-required="true" class="form-control" type="text" >
+                        <input autocomplete="off" ng-model="payment.firstName" placeholder="First Name on Card" name="fName" id="fName" ng-required="true" class="form-control" type="text" >
                     </div>
 
                     <div class="col-sm-6">
                         <label class="form-label">Last Name</label>
-                        <input autocomplete="off" ng-model="sale['last-name']" placeholder="Last Name on Card" name="lName" id="lName" ng-required="true" class="form-control" type="text" >
+                        <input autocomplete="off" ng-model="payment.lastName" placeholder="Last Name on Card" name="lName" id="lName" ng-required="true" class="form-control" type="text" >
                     </div>
                 </div>
+                -->
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-4">
+                        <label class="form-label">Amount to Pay</label>
+                        <input autocomplete="off" ng-model="payment.amount" ng-value="paymentCtrl.paymentTotal" name="amount" id="amount" ng-required="true" class="form-control" type="text" >
+                    </div>
+                    <div class="col-sm-4">
                         <label class="form-label">Card Number</label>
-                        <input autocomplete="off" ng-format="card" ng-model="sale.card" name="card" type="text" class="form-control" placeholder="Card Number" id="card">
+                        <input autocomplete="off" ng-format="card" ng-model="payment.card" name="card" type="text" class="form-control" placeholder="Card Number" id="card">
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <label class="form-label">Expiration Date</label>
-                        <input autocomplete="off" ng-format="dateMMYY" ng-model="sale['exp-date']" name="exp-date" id="exp-date" ng-required="true" placeholder="MM/YY" class="form-control form-expiration" type="text" ng-minLength="4"
+                        <input autocomplete="off" ng-format="dateMMYY" ng-model="payment.expDate" name="exp-date" id="exp-date" ng-required="true" placeholder="MM/YY" class="form-control form-expiration" type="text" ng-minLength="4"
                                ng-maxLength="5" pattern2="^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$">
                     </div>
-
+                </div>
+                <!--
+                <div class="row">
                     <div class="col-sm-6">
                         <label class="form-label">Card Security Code</label>
-                        <input autocomplete="off" placeholder="CSC" ng-model="sale.csc" name="csc" type="text" class="form-control form-cvc" placeholder="Security Code" ng-minlength="3" ng-maxlength="3" pattern="[0-9]*">
+                        <input autocomplete="off" placeholder="CSC" ng-model="payment.csc" name="csc" type="text" class="form-control form-cvc" placeholder="Security Code" ng-minlength="3" ng-maxlength="3" pattern="[0-9]*">
                     </div>
                 </div>
+                -->
                 <br>
 
                 <div class="row">
                     <div class="col-md-5 buttons" align="left">
                         <button ng-click="paymentCtrl.cancel()" class="btn btn-primary btn-search">Cancel</button>
-                        <button ng-click="paymentCtrl.post(sale,address,shippingAddress,tran.type)" class="btn btn-primary btn-search">Pay Now</button>
+                        <button ng-click="paymentCtrl.makePayment(payment)" class="btn btn-primary btn-search">Pay Now</button>
                     </div>
                 </div>
 
