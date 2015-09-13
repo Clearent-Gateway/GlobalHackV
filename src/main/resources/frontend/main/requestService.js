@@ -1,9 +1,11 @@
 angular
     .module('court')
     .service('RequestService', ['$http', '$log',
-        function RequestService($http, $log) {
+    function RequestService($http, $log) {
 
         var baseUrl = "localhost:8080";
+        var searchController = "/citation";
+        var paymentController = "/payment";
 
         this.setBaseUrl = function(url){
             baseUrl = url;
@@ -13,33 +15,27 @@ angular
             return baseUrl;
         };
 
-
-        this.getRequestObject = function (saleRequest) {
+        this.getSearchObject = function(searchCriteria){
             return {
-                method: 'POST',
-                url: 'https://'+this.getBaseUrl()+'/rest/v2/transactions',
+                method: 'GET',
+                url: 'http://'+this.getBaseUrl() + searchController + searchCriteria,
                 headers: {
                     'Content-Type': 'application/json',
                     'accept': 'application/json'
-                },
-                data: saleRequest
+                }
             };
         };
 
-         this.getCitation = function (urlString) {
-            var url = 'http://'+this.getBaseUrl()+'/citation';
-            if (urlString != null) {
-                url = url + urlString;
-            }
-            var getReq = {
+        this.getPaymentRequest = function(paymentDetails){
+            return {
                 method: 'GET',
-                url: url,
+                url: 'http://'+this.getBaseUrl() + paymentController + paymentDetails,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'accept': 'application/json'
                 }
             };
-            return this.send(getReq);
+
         };
 
         this.send = function (req){
